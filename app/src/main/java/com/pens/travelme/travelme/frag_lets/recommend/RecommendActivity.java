@@ -8,9 +8,15 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.pens.travelme.travelme.R;
+<<<<<<< HEAD:app/src/main/java/com/pens/travelme/travelme/frag_lets/recommend/RecommendActivity.java
 import com.pens.travelme.travelme.frag_lets.recommend.recommend_hotel.ReHotelFragment;
 import com.pens.travelme.travelme.frag_lets.recommend.recommend_restaurant.ReRestaurantFragment;
 import com.pens.travelme.travelme.frag_lets.recommend.recommend_travel.ReTravelFragment;
+=======
+import com.pens.travelme.travelme.lets_travel.recommend.recommend_hotel.ReHotelFragment;
+import com.pens.travelme.travelme.lets_travel.recommend.recommend_restaurant.ReRestaurantFragment;
+import com.pens.travelme.travelme.lets_travel.recommend.recommend_travel.ReTravelFragment;
+>>>>>>> uki:app/src/main/java/com/pens/travelme/travelme/lets_travel/recommend/RecommendActivity.java
 
 public class RecommendActivity extends AppCompatActivity {
 

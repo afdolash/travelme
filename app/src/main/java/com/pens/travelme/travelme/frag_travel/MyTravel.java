@@ -1,9 +1,5 @@
 package com.pens.travelme.travelme.frag_travel;
 
-import com.pens.travelme.travelme.modal.Hotel;
-import com.pens.travelme.travelme.modal.Restaurant;
-import com.pens.travelme.travelme.modal.Travel;
-
 /**
  * Created by afdol on 4/10/2018.
  */

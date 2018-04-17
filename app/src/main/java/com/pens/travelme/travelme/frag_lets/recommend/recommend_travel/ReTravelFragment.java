@@ -11,7 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pens.travelme.travelme.R;
+<<<<<<< HEAD:app/src/main/java/com/pens/travelme/travelme/frag_lets/recommend/recommend_travel/ReTravelFragment.java
 import com.pens.travelme.travelme.modal.Travel;
+=======
+>>>>>>> uki:app/src/main/java/com/pens/travelme/travelme/lets_travel/recommend/recommend_travel/ReTravelFragment.java
 
 import java.util.ArrayList;
 import java.util.List;

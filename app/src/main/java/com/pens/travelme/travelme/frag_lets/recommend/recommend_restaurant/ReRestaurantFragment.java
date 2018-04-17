@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pens.travelme.travelme.R;
-import com.pens.travelme.travelme.modal.Restaurant;
 
 import java.util.ArrayList;
 import java.util.List;

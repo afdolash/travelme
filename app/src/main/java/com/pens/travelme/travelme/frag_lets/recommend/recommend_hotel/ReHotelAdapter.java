@@ -15,7 +15,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pens.travelme.travelme.R;
+<<<<<<< HEAD:app/src/main/java/com/pens/travelme/travelme/frag_lets/recommend/recommend_hotel/ReHotelAdapter.java
 import com.pens.travelme.travelme.modal.Hotel;
+=======
+>>>>>>> uki:app/src/main/java/com/pens/travelme/travelme/lets_travel/recommend/recommend_hotel/ReHotelAdapter.java
 
 import java.util.List;
 

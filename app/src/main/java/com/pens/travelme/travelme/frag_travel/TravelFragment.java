@@ -11,9 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pens.travelme.travelme.R;
+<<<<<<< HEAD:app/src/main/java/com/pens/travelme/travelme/frag_travel/TravelFragment.java
 import com.pens.travelme.travelme.modal.Hotel;
 import com.pens.travelme.travelme.modal.Restaurant;
 import com.pens.travelme.travelme.modal.Travel;
+=======
+>>>>>>> uki:app/src/main/java/com/pens/travelme/travelme/travel/TravelFragment.java
 
 import java.util.ArrayList;
 import java.util.List;

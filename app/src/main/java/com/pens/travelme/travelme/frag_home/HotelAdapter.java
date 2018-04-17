@@ -10,7 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pens.travelme.travelme.R;
+<<<<<<< HEAD:app/src/main/java/com/pens/travelme/travelme/frag_home/HotelAdapter.java
 import com.pens.travelme.travelme.modal.Hotel;
+=======
+>>>>>>> uki:app/src/main/java/com/pens/travelme/travelme/home/HotelAdapter.java
 
 import java.util.List;
 

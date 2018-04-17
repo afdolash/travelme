@@ -6,11 +6,11 @@ public class Wisata {
     private String nama;
     private String desa;
     private String kecamatan;
-    private float tiket_masuk_dewasa;
-    private float tiket_masuk_anak;
-    private float biaya_parkir_motor;
-    private float biaya_parkir_mobil;
-    private float biaya_parkir_bus;
+    private Double tiket_masuk_dewasa;
+    private Double tiket_masuk_anak;
+    private Double biaya_parkir_motor;
+    private Double biaya_parkir_mobil;
+    private Double biaya_parkir_bus;
     private String foto;
     private String deskripsi;
     private String fasilitas;
@@ -25,7 +25,7 @@ public class Wisata {
     public Wisata() {
     }
 
-    public Wisata(int id_wisata, int id_admin, String nama, String desa, String kecamatan, float tiket_masuk_dewasa, float tiket_masuk_anak, float biaya_parkir_motor, float biaya_parkir_mobil, float biaya_parkir_bus, String foto, String deskripsi, String fasilitas, Double posisi_lat, Double posisi_lng, String akses, String zona, String jam_buka, String jam_tutup, String jenis) {
+    public Wisata(int id_wisata, int id_admin, String nama, String desa, String kecamatan, Double tiket_masuk_dewasa, Double tiket_masuk_anak, Double biaya_parkir_motor, Double biaya_parkir_mobil, Double biaya_parkir_bus, String foto, String deskripsi, String fasilitas, Double posisi_lat, Double posisi_lng, String akses, String zona, String jam_buka, String jam_tutup, String jenis) {
         this.id_wisata = id_wisata;
         this.id_admin = id_admin;
         this.nama = nama;
@@ -88,43 +88,43 @@ public class Wisata {
         this.kecamatan = kecamatan;
     }
 
-    public float getTiket_masuk_dewasa() {
+    public Double getTiket_masuk_dewasa() {
         return tiket_masuk_dewasa;
     }
 
-    public void setTiket_masuk_dewasa(float tiket_masuk_dewasa) {
+    public void setTiket_masuk_dewasa(Double tiket_masuk_dewasa) {
         this.tiket_masuk_dewasa = tiket_masuk_dewasa;
     }
 
-    public float getTiket_masuk_anak() {
+    public Double getTiket_masuk_anak() {
         return tiket_masuk_anak;
     }
 
-    public void setTiket_masuk_anak(float tiket_masuk_anak) {
+    public void setTiket_masuk_anak(Double tiket_masuk_anak) {
         this.tiket_masuk_anak = tiket_masuk_anak;
     }
 
-    public float getBiaya_parkir_motor() {
+    public Double getBiaya_parkir_motor() {
         return biaya_parkir_motor;
     }
 
-    public void setBiaya_parkir_motor(float biaya_parkir_motor) {
+    public void setBiaya_parkir_motor(Double biaya_parkir_motor) {
         this.biaya_parkir_motor = biaya_parkir_motor;
     }
 
-    public float getBiaya_parkir_mobil() {
+    public Double getBiaya_parkir_mobil() {
         return biaya_parkir_mobil;
     }
 
-    public void setBiaya_parkir_mobil(float biaya_parkir_mobil) {
+    public void setBiaya_parkir_mobil(Double biaya_parkir_mobil) {
         this.biaya_parkir_mobil = biaya_parkir_mobil;
     }
 
-    public float getBiaya_parkir_bus() {
+    public Double getBiaya_parkir_bus() {
         return biaya_parkir_bus;
     }
 
-    public void setBiaya_parkir_bus(float biaya_parkir_bus) {
+    public void setBiaya_parkir_bus(Double biaya_parkir_bus) {
         this.biaya_parkir_bus = biaya_parkir_bus;
     }
 

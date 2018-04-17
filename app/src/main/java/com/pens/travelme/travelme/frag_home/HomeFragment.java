@@ -12,9 +12,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.pens.travelme.travelme.R;
-import com.pens.travelme.travelme.modal.Hotel;
-import com.pens.travelme.travelme.modal.Restaurant;
-import com.pens.travelme.travelme.modal.Travel;
 
 import java.util.ArrayList;
 import java.util.List;

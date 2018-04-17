@@ -10,7 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pens.travelme.travelme.R;
+<<<<<<< HEAD:app/src/main/java/com/pens/travelme/travelme/frag_home/TravelAdapter.java
 import com.pens.travelme.travelme.modal.Travel;
+=======
+>>>>>>> uki:app/src/main/java/com/pens/travelme/travelme/home/TravelAdapter.java
 
 import java.util.List;
 
