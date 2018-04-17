@@ -10,8 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pens.travelme.travelme.R;
-import com.pens.travelme.travelme.modal.Hotel;
-import com.pens.travelme.travelme.modal.Restaurant;
 
 import java.util.List;
 

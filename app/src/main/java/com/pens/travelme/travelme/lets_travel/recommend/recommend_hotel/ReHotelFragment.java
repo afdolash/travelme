@@ -11,9 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pens.travelme.travelme.R;
-import com.pens.travelme.travelme.lets_travel.recommend.recommend_travel.ReTravelAdapter;
-import com.pens.travelme.travelme.modal.Hotel;
-import com.pens.travelme.travelme.modal.Travel;
 
 import java.util.ArrayList;
 import java.util.List;

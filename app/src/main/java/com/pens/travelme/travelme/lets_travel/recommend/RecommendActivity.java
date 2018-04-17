@@ -6,14 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.lets_travel.recommend.recommend_hotel.ReHotelFragment;
 import com.pens.travelme.travelme.lets_travel.recommend.recommend_restaurant.ReRestaurantFragment;
 import com.pens.travelme.travelme.lets_travel.recommend.recommend_travel.ReTravelFragment;
-import com.pens.travelme.travelme.modal.Hotel;
-import com.pens.travelme.travelme.travel.TravelFragment;
 
 public class RecommendActivity extends AppCompatActivity {
 

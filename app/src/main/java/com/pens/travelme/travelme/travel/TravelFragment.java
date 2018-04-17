@@ -2,7 +2,6 @@ package com.pens.travelme.travelme.travel;
 
 
 import android.os.Bundle;
-import android.os.RecoverySystem;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,10 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pens.travelme.travelme.R;
-import com.pens.travelme.travelme.home.TravelAdapter;
-import com.pens.travelme.travelme.modal.Hotel;
-import com.pens.travelme.travelme.modal.Restaurant;
-import com.pens.travelme.travelme.modal.Travel;
 
 import java.util.ArrayList;
 import java.util.List;
