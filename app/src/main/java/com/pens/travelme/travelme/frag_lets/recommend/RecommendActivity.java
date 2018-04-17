@@ -1,4 +1,4 @@
-package com.pens.travelme.travelme.lets_travel.recommend;
+package com.pens.travelme.travelme.frag_lets.recommend;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -6,14 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.pens.travelme.travelme.R;
-import com.pens.travelme.travelme.lets_travel.recommend.recommend_hotel.ReHotelFragment;
-import com.pens.travelme.travelme.lets_travel.recommend.recommend_restaurant.ReRestaurantFragment;
-import com.pens.travelme.travelme.lets_travel.recommend.recommend_travel.ReTravelFragment;
-import com.pens.travelme.travelme.modal.Hotel;
-import com.pens.travelme.travelme.travel.TravelFragment;
+import com.pens.travelme.travelme.frag_lets.recommend.recommend_hotel.ReHotelFragment;
+import com.pens.travelme.travelme.frag_lets.recommend.recommend_restaurant.ReRestaurantFragment;
+import com.pens.travelme.travelme.frag_lets.recommend.recommend_travel.ReTravelFragment;
 
 public class RecommendActivity extends AppCompatActivity {
 

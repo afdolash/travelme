@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.pens.travelme.travelme.lets_travel.recommend.RecommendActivity">
+    tools:context="com.pens.travelme.travelme.frag_lets.recommend.RecommendActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

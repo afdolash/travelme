@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".lets_travel.recommend.recommend_hotel.ReHotelFragment">
+    tools:context=".frag_lets.recommend.recommend_hotel.ReHotelFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"

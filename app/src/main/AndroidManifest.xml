@@ -23,12 +23,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".lets_travel.LetsActivity"
+            android:name=".frag_lets.LetsActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Transparent" />
         <activity
-            android:name=".lets_travel.recommend.RecommendActivity"
+            android:name=".frag_lets.recommend.RecommendActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Transparent" />

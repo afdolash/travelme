@@ -1,4 +1,4 @@
-package com.pens.travelme.travelme.lets_travel;
+package com.pens.travelme.travelme.frag_lets;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.pens.travelme.travelme.R;
-import com.pens.travelme.travelme.lets_travel.recommend.RecommendActivity;
+import com.pens.travelme.travelme.frag_lets.recommend.RecommendActivity;
 
 public class LetsActivity extends AppCompatActivity {
 

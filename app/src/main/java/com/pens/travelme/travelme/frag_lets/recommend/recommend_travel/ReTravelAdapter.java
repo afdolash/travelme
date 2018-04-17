@@ -1,4 +1,4 @@
-package com.pens.travelme.travelme.lets_travel.recommend.recommend_hotel;
+package com.pens.travelme.travelme.frag_lets.recommend.recommend_travel;
 
 import android.Manifest;
 import android.content.Context;
@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pens.travelme.travelme.R;
-import com.pens.travelme.travelme.modal.Hotel;
 import com.pens.travelme.travelme.modal.Travel;
 
 import java.util.List;
@@ -24,14 +23,13 @@ import java.util.List;
  * Created by afdol on 4/10/2018.
  */
 
-public class ReHotelAdapter extends RecyclerView.Adapter<ReHotelAdapter.MyViewHolder> {
-
+public class ReTravelAdapter extends RecyclerView.Adapter<ReTravelAdapter.MyViewHolder> {
     private Context context;
-    private List<Hotel> hotels;
+    private List<Travel> travels;
 
-    public ReHotelAdapter(Context context, List<Hotel> hotels) {
+    public ReTravelAdapter(Context context, List<Travel> travels) {
         this.context = context;
-        this.hotels = hotels;
+        this.travels = travels;
     }
 
     @Override
@@ -42,17 +40,17 @@ public class ReHotelAdapter extends RecyclerView.Adapter<ReHotelAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        final Hotel hotel = hotels.get(position);
+        final Travel travel = travels.get(position);
 
-        holder.imgItem.setImageResource(hotel.getImage());
-        holder.tvTitle.setText(hotel.getTitle());
-        holder.tvAddress.setText(hotel.getAddress());
-        holder.tvPrice.setText(hotel.getPrice());
+        holder.imgItem.setImageResource(travel.getImage());
+        holder.tvTitle.setText(travel.getTitle());
+        holder.tvAddress.setText(travel.getAddress());
+        holder.tvPrice.setText(travel.getPrice());
 
         holder.imgCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + hotel.getPhone()));
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + travel.getPhone()));
                 if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
                     context.startActivity(intent);
                 }
@@ -62,7 +60,7 @@ public class ReHotelAdapter extends RecyclerView.Adapter<ReHotelAdapter.MyViewHo
 
     @Override
     public int getItemCount() {
-        return hotels.size();
+        return travels.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

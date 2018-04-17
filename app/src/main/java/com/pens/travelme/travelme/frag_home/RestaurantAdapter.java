@@ -1,4 +1,4 @@
-package com.pens.travelme.travelme.home;
+package com.pens.travelme.travelme.frag_home;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.modal.Restaurant;
-import com.pens.travelme.travelme.modal.Travel;
 
 import java.util.List;
 
@@ -19,13 +18,14 @@ import java.util.List;
  * Created by afdol on 4/10/2018.
  */
 
-public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.MyViewHolder> {
-    private Context context;
-    private List<Travel> travels;
+public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.MyViewHolder> {
 
-    public TravelAdapter(Context context, List<Travel> travels) {
+    private Context context;
+    private List<Restaurant> restaurants;
+
+    public RestaurantAdapter(Context context, List<Restaurant> restaurants) {
         this.context = context;
-        this.travels = travels;
+        this.restaurants = restaurants;
     }
 
     @Override
@@ -35,17 +35,17 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        Travel travel = travels.get(position);
+    public void onBindViewHolder(RestaurantAdapter.MyViewHolder holder, int position) {
+        Restaurant restaurant = restaurants.get(position);
 
-        holder.imgItem.setImageResource(travel.getImage());
-        holder.tvTitle.setText(travel.getTitle());
-        holder.tvAddress.setText(travel.getAddress());
+        holder.imgItem.setImageResource(restaurant.getImage());
+        holder.tvTitle.setText(restaurant.getTitle());
+        holder.tvAddress.setText(restaurant.getAddress());
     }
 
     @Override
     public int getItemCount() {
-        return travels.size();
+        return restaurants.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

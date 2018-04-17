@@ -1,4 +1,4 @@
-package com.pens.travelme.travelme.travel;
+package com.pens.travelme.travelme.frag_travel;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pens.travelme.travelme.R;
-import com.pens.travelme.travelme.modal.Travel;
 
 import java.util.List;
 

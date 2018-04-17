@@ -1,4 +1,4 @@
-package com.pens.travelme.travelme.lets_travel.recommend.recommend_restaurant;
+package com.pens.travelme.travelme.frag_lets.recommend.recommend_restaurant;
 
 import android.Manifest;
 import android.content.Context;
@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pens.travelme.travelme.R;
-import com.pens.travelme.travelme.modal.Hotel;
 import com.pens.travelme.travelme.modal.Restaurant;
 
 import java.util.List;

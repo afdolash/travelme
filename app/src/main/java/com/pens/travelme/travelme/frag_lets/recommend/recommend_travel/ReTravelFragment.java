@@ -1,9 +1,8 @@
-package com.pens.travelme.travelme.lets_travel.recommend.recommend_travel;
+package com.pens.travelme.travelme.frag_lets.recommend.recommend_travel;
 
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pens.travelme.travelme.R;
-import com.pens.travelme.travelme.home.TravelAdapter;
 import com.pens.travelme.travelme.modal.Travel;
 
 import java.util.ArrayList;

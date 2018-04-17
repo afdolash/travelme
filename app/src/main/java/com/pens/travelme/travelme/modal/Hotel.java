@@ -5,34 +5,9 @@ package com.pens.travelme.travelme.modal;
  */
 
 public class Hotel {
-    private String title, address, price, phone;
-    private int image;
+    private int id_kamar, id_penginapan, banyak_kamar, kapasitas;
+    private double harga;
+    private String nama, fasilitas, foto;
 
-    public Hotel(String title, String address, String price, String phone, int image) {
-        this.title = title;
-        this.address = address;
-        this.price = price;
-        this.phone = phone;
-        this.image = image;
-    }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public int getImage() {
-        return image;
-    }
 }

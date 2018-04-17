@@ -1,4 +1,4 @@
-package com.pens.travelme.travelme.travel;
+package com.pens.travelme.travelme.frag_travel;
 
 import com.pens.travelme.travelme.modal.Hotel;
 import com.pens.travelme.travelme.modal.Restaurant;

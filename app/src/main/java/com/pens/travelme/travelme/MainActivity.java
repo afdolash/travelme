@@ -11,11 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
-import com.pens.travelme.travelme.account.AccountFragment;
-import com.pens.travelme.travelme.history.HistoryFragment;
-import com.pens.travelme.travelme.home.HomeFragment;
-import com.pens.travelme.travelme.lets_travel.LetsActivity;
-import com.pens.travelme.travelme.travel.TravelFragment;
+import com.pens.travelme.travelme.frag_account.AccountFragment;
+import com.pens.travelme.travelme.frag_history.HistoryFragment;
+import com.pens.travelme.travelme.frag_home.HomeFragment;
+import com.pens.travelme.travelme.frag_lets.LetsActivity;
+import com.pens.travelme.travelme.frag_travel.TravelFragment;
 
 public class MainActivity extends AppCompatActivity {
 
