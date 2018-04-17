@@ -11,9 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pens.travelme.travelme.R;
-import com.pens.travelme.travelme.modal.Hotel;
-import com.pens.travelme.travelme.modal.Restaurant;
-import com.pens.travelme.travelme.modal.Travel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,65 +42,65 @@ public class TravelFragment extends Fragment {
         rcMytravel.setItemAnimator(new DefaultItemAnimator());
         rcMytravel.setAdapter(new MyTravelAdapter(getContext(), myTravels));
 
-        loadMyTravelData();
+//        loadMyTravelData();
 
         return view;
     }
 
-    public void loadMyTravelData() {
-        Travel travel = new Travel(
-                "Pantai Sanggar",
-                "Desa Karangasem, Kecamatan Kalidawir, Kabupaten Tulungagung",
-                "200000",
-                "08124078773",
-                R.drawable.travel3
-        );
-
-        List<Restaurant.Food> foods = new ArrayList<>();
-        Restaurant.Food food = new Restaurant.Food(
-                "Beef Steak",
-                "125000",
-                R.drawable.food
-        );
-        foods.add(food);
-
-
-        List<Restaurant.Drink> drinks = new ArrayList<>();
-        Restaurant.Drink drink = new Restaurant.Drink(
-                "Sweet Tea",
-                "25000",
-                R.drawable.drink
-        );
-        drinks.add(drink);
-
-
-        Restaurant restaurant = new Restaurant(
-                "Jepun View Resto",
-                "Jl. Mayor Sujadi Jepun, Jepun, Kec. Tulungagung, Kabupaten Tulungagung",
-                "08124078773",
-                R.drawable.resto1,
-                foods,
-                drinks
-        );
-
-        Hotel hotel = new Hotel(
-                "Crown Victoria Hotel",
-                "Jalan Supriadi No.41, Jepun, Kecamatan Tulungagung, Jepun, Kec. Tulungagung, Kabupaten Tulungagung",
-                "e00000",
-                "08124078773",
-                R.drawable.hotel1
-        );
-
-        MyTravel myTravel = new MyTravel(
-                "Selasa, 10 April 2018",
-                "My Travelling 1",
-                travel,
-                hotel,
-                restaurant
-        );
-        myTravels.add(myTravel);
-
-        rcMytravel.getAdapter().notifyDataSetChanged();
-    }
+//    public void loadMyTravelData() {
+//        Travel travel = new Travel(
+//                "Pantai Sanggar",
+//                "Desa Karangasem, Kecamatan Kalidawir, Kabupaten Tulungagung",
+//                "200000",
+//                "08124078773",
+//                R.drawable.travel3
+//        );
+//
+//        List<Restaurant.Food> foods = new ArrayList<>();
+//        Restaurant.Food food = new Restaurant.Food(
+//                "Beef Steak",
+//                "125000",
+//                R.drawable.food
+//        );
+//        foods.add(food);
+//
+//
+//        List<Restaurant.Drink> drinks = new ArrayList<>();
+//        Restaurant.Drink drink = new Restaurant.Drink(
+//                "Sweet Tea",
+//                "25000",
+//                R.drawable.drink
+//        );
+//        drinks.add(drink);
+//
+//
+//        Restaurant restaurant = new Restaurant(
+//                "Jepun View Resto",
+//                "Jl. Mayor Sujadi Jepun, Jepun, Kec. Tulungagung, Kabupaten Tulungagung",
+//                "08124078773",
+//                R.drawable.resto1,
+//                foods,
+//                drinks
+//        );
+//
+//        Hotel hotel = new Hotel(
+//                "Crown Victoria Hotel",
+//                "Jalan Supriadi No.41, Jepun, Kecamatan Tulungagung, Jepun, Kec. Tulungagung, Kabupaten Tulungagung",
+//                "e00000",
+//                "08124078773",
+//                R.drawable.hotel1
+//        );
+//
+//        MyTravel myTravel = new MyTravel(
+//                "Selasa, 10 April 2018",
+//                "My Travelling 1",
+//                travel,
+//                hotel,
+//                restaurant
+//        );
+//        myTravels.add(myTravel);
+//
+//        rcMytravel.getAdapter().notifyDataSetChanged();
+//    }
 
 }

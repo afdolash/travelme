@@ -73,6 +73,7 @@
                         android:layout_marginRight="16dp"/>
 
                     <EditText
+                        android:id="@+id/et_budget"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Total budget"
@@ -155,6 +156,7 @@
                             android:orientation="horizontal">
 
                             <LinearLayout
+                                android:id="@+id/ln_cat_alam"
                                 android:layout_width="wrap_content"
                                 android:layout_height="34dp"
                                 android:paddingBottom="10dp"
@@ -187,6 +189,7 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/ln_cat_buatan"
                                 android:layout_width="wrap_content"
                                 android:layout_height="34dp"
                                 android:layout_marginBottom="17dp"
@@ -251,6 +254,7 @@
                                     android:gravity="center">
 
                                     <RelativeLayout
+                                        android:id="@+id/rv_motor_min"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="4dp"
@@ -266,6 +270,7 @@
                                     </RelativeLayout>
 
                                     <TextView
+                                        android:id="@+id/tv_motor"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="2"
@@ -277,6 +282,7 @@
                                         android:fontFamily="@font/segoe"/>
 
                                     <RelativeLayout
+                                        android:id="@+id/rv_motor_plus"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="4dp"
@@ -315,6 +321,7 @@
                                     android:gravity="center">
 
                                     <RelativeLayout
+                                        android:id="@+id/rv_car_min"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="4dp"
@@ -330,6 +337,7 @@
                                     </RelativeLayout>
 
                                     <TextView
+                                        android:id="@+id/tv_car"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="2"
@@ -341,6 +349,7 @@
                                         android:fontFamily="@font/segoe"/>
 
                                     <RelativeLayout
+                                        android:id="@+id/rv_car_plus"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="4dp"
@@ -386,6 +395,7 @@
                                     android:gravity="center">
 
                                     <RelativeLayout
+                                        android:id="@+id/rv_bus_min"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="4dp"
@@ -401,6 +411,7 @@
                                     </RelativeLayout>
 
                                     <TextView
+                                        android:id="@+id/tv_bus"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="2"
@@ -412,6 +423,7 @@
                                         android:fontFamily="@font/segoe"/>
 
                                     <RelativeLayout
+                                        android:id="@+id/rv_bus_plus"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="4dp"
@@ -461,6 +473,7 @@
                                 android:gravity="center">
 
                                 <RelativeLayout
+                                    android:id="@+id/rv_adult_plus"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="4dp"
@@ -476,6 +489,7 @@
                                 </RelativeLayout>
 
                                 <TextView
+                                    android:id="@+id/tv_adult"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="2"
@@ -487,6 +501,7 @@
                                     android:fontFamily="@font/segoe"/>
 
                                 <RelativeLayout
+                                    android:id="@+id/rv_adult_min"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="4dp"
@@ -517,6 +532,7 @@
                                 android:gravity="center">
 
                                 <RelativeLayout
+                                    android:id="@+id/rv_child_plus"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="4dp"
@@ -532,6 +548,7 @@
                                 </RelativeLayout>
 
                                 <TextView
+                                    android:id="@+id/tv_child"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="2"
@@ -543,6 +560,7 @@
                                     android:fontFamily="@font/segoe"/>
 
                                 <RelativeLayout
+                                    android:id="@+id/rv_child_min"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="4dp"
@@ -571,6 +589,7 @@
                             android:textSize="10sp" />
 
                         <LinearLayout
+                            android:id="@+id/ln_wisata_date"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingBottom="10dp"
@@ -594,6 +613,7 @@
                                 android:layout_marginRight="14dp"/>
 
                             <TextView
+                                android:id="@+id/tv_wisata_date"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Pilih hari dan tanggal"
@@ -688,6 +708,7 @@
                             android:gravity="center">
 
                             <RelativeLayout
+                                android:id="@+id/rv_porsi_min"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="4dp"
@@ -703,6 +724,7 @@
                             </RelativeLayout>
 
                             <TextView
+                                android:id="@+id/tv_porsi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="2"
@@ -714,6 +736,7 @@
                                 android:fontFamily="@font/segoe"/>
 
                             <RelativeLayout
+                                android:id="@+id/rv_porsi_plus"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="4dp"
@@ -740,6 +763,7 @@
                             android:textSize="10sp" />
 
                         <LinearLayout
+                            android:id="@+id/ln_kuliner_date"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingBottom="10dp"
@@ -763,6 +787,7 @@
                                 android:layout_marginRight="14dp"/>
 
                             <TextView
+                                android:id="@+id/tv_kuliner_date"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Pilih hari dan tanggal"
@@ -857,6 +882,7 @@
                             android:gravity="center">
 
                             <RelativeLayout
+                                android:id="@+id/rv_kamar_min"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="4dp"
@@ -872,6 +898,7 @@
                             </RelativeLayout>
 
                             <TextView
+                                android:id="@+id/tv_kamar"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="2"
@@ -883,6 +910,7 @@
                                 android:fontFamily="@font/segoe"/>
 
                             <RelativeLayout
+                                android:id="@+id/rv_kamar_plus"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="4dp"
@@ -909,6 +937,7 @@
                             android:textSize="10sp" />
 
                         <LinearLayout
+                            android:id="@+id/ln_checkin_date"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingBottom="10dp"
@@ -932,6 +961,7 @@
                                 android:layout_marginRight="14dp"/>
 
                             <TextView
+                                android:id="@+id/tv_checkin_date"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Pilih hari dan tanggal check-in"
@@ -943,6 +973,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/ln_checkout_date"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingBottom="10dp"
@@ -966,6 +997,7 @@
                                 android:layout_marginRight="14dp"/>
 
                             <TextView
+                                android:id="@+id/tv_checkout_date"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Pilih hari dan tanggal check-out"

@@ -1,5 +1,9 @@
 package com.pens.travelme.travelme.api;
 
+import com.pens.travelme.travelme.modal.Kamar;
+import com.pens.travelme.travelme.modal.Kuliner;
+import com.pens.travelme.travelme.modal.Menu;
+import com.pens.travelme.travelme.modal.Penginapan;
 import com.pens.travelme.travelme.modal.Wisata;
 
 import java.util.ArrayList;
@@ -34,30 +38,42 @@ public class ApiServices {
     public interface PostService {
         @FormUrlEncoded
         @POST("recomendation")
-        Call<ArrayList<Wisata>> postWisata(
+        Call<ArrayList<Wisata>> get_r_wisata(
                 @Field("jenis_layanan") String jenis_layanan,
                 @Field("wisata_jenis") String wisata_jenis,
                 @Field("wisata_jumlah_anak") int wisata_jumlah_anak,
                 @Field("wisata_jumlah_dewasa") int wisata_jumlah_dewasa,
-                @Field("budget_wisata") int budget_wisata
+                @Field("budget_wisata") Double budget_wisata
         );
 
         @FormUrlEncoded
         @POST("recomendation")
-        Call<Event> postHotel(
+        Call<ArrayList<Kamar>> get_r_kamar(
                 @Field("jenis_layanan") String jenis_layanan,
                 @Field("kamar_jumlah") int kamar_jumlah,
                 @Field("kamar_jumlah_hari") int kamar_jumlah_hari,
-                @Field("budget_kamar") int budget_kamar
+                @Field("budget_kamar") Double budget_kamar
         );
 
-//        @FormUrlEncoded
-//        @POST("recomendation")
-//        Call<Event> postResto(
-//                @Field("jenis_layanan") String jenis_layanan,
-//                @Field("menu_porsi") int menu_porsi,
-//                @Field("budget_menu") int budget_menu
-//        );
+        @FormUrlEncoded
+        @POST("recomendation")
+        Call<ArrayList<Menu>> get_r_menu(
+                @Field("jenis_layanan") String jenis_layanan,
+                @Field("menu_porsi") int menu_porsi,
+                @Field("budget_menu") Double budget_menu
+        );
+
+        @FormUrlEncoded
+        @POST("all_kuliner")
+        Call<ArrayList<Kuliner>> get_all_kuliner(@Field("id") int id);
+
+        @FormUrlEncoded
+        @POST("all_wisata")
+        Call<ArrayList<Wisata>> get_all_wisata(@Field("id") int id);
+
+        @FormUrlEncoded
+        @POST("all_wisata")
+        Call<ArrayList<Penginapan>> get_all_penginapan(@Field("id") int id);
     }
 
     public interface GetService {

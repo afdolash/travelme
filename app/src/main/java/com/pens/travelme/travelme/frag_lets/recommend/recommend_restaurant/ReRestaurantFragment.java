@@ -6,24 +6,33 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.pens.travelme.travelme.R;
-import com.pens.travelme.travelme.modal.Restaurant;
+import com.pens.travelme.travelme.api.ApiServices;
+import com.pens.travelme.travelme.frag_lets.recommend.RecommendActivity;
+import com.pens.travelme.travelme.modal.Menu;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ReRestaurantFragment extends Fragment {
+    public static final String RERESTO_FRAG_TAG = "ReHotelFragment";
 
     private RecyclerView rcRestaurant;
-    private List<Restaurant> restaurants = new ArrayList<>();
+    private List<Menu> menus = new ArrayList<>();
 
     public ReRestaurantFragment() {
         // Required empty public constructor
@@ -41,84 +50,38 @@ public class ReRestaurantFragment extends Fragment {
         RecyclerView.LayoutManager travelLayout = new LinearLayoutManager(getContext());
         rcRestaurant.setLayoutManager(travelLayout);
         rcRestaurant.setItemAnimator(new DefaultItemAnimator());
-        rcRestaurant.setAdapter(new ReRestaurantAdapter(getContext(), restaurants));
         rcRestaurant.setFocusable(false);
 
-        loadRestaurantData();
+        loadMenuData();
 
         return view;
     }
 
-    public void loadRestaurantData() {
-        List<Restaurant.Food> foods = new ArrayList<>();
-        Restaurant.Food food = new Restaurant.Food(
-                "Beef Steak",
-                "125000",
-                R.drawable.food
-        );
-        foods.add(food);
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        RecommendActivity.currentFragment = RecommendActivity.HOTEL;
+    }
 
+    public void loadMenuData() {
+        ApiServices.service_post.get_r_menu(
+                "menu",
+                99,
+                999999999.0
+        ).enqueue(new Callback<ArrayList<Menu>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Menu>> call, Response<ArrayList<Menu>> response) {
+                menus = response.body();
 
-        List<Restaurant.Drink> drinks = new ArrayList<>();
-        Restaurant.Drink drink = new Restaurant.Drink(
-                "Sweet Tea",
-                "25000",
-                R.drawable.drink
-        );
-        drinks.add(drink);
+                rcRestaurant.setAdapter(new ReRestaurantAdapter(getContext(), menus, 9));
+                rcRestaurant.getAdapter().notifyDataSetChanged();
+            }
 
-
-        Restaurant restaurant = new Restaurant(
-                "Jepun View Resto",
-                "Jl. Mayor Sujadi Jepun, Jepun, Kec. Tulungagung, Kabupaten Tulungagung",
-                "08124078773",
-                R.drawable.resto1,
-                foods,
-                drinks
-        );
-        restaurants.add(restaurant);
-
-        restaurant = new Restaurant(
-                "D'Oeleg Resto & Café",
-                "Jl. Raya Jemursari No. 167 Surabaya",
-                "0318418430",
-                R.drawable.resto2,
-                foods,
-                drinks
-        );
-        restaurants.add(restaurant);
-
-        restaurant = new Restaurant(
-                "Bakso Solo Rindu Malam",
-                "Jl. Ciliwung No. 123 Surabaya",
-                "082233993089",
-                R.drawable.resto3,
-                foods,
-                drinks
-        );
-        restaurants.add(restaurant);
-
-        restaurant = new Restaurant(
-                "Bakso Hitam",
-                "Jl. Pandegiling No. 244 Surabaya",
-                "082216698639",
-                R.drawable.resto4,
-                foods,
-                drinks
-        );
-        restaurants.add(restaurant);
-
-        restaurant = new Restaurant(
-                "Rumah Makan Forum",
-                "Jl. Margorejo Indah No. 128-130 Surabaya",
-                "0318436300",
-                R.drawable.resto5,
-                foods,
-                drinks
-        );
-        restaurants.add(restaurant);
-
-        rcRestaurant.getAdapter().notifyDataSetChanged();
+            @Override
+            public void onFailure(Call<ArrayList<Menu>> call, Throwable t) {
+                Log.d(RERESTO_FRAG_TAG, t.getMessage());
+            }
+        });
     }
 
 }

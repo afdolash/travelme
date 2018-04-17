@@ -38,17 +38,17 @@ public class MyTravelAdapter extends RecyclerView.Adapter<MyTravelAdapter.MyView
     public void onBindViewHolder(MyViewHolder holder, int position) {
         MyTravel myTravel = myTravels.get(position);
 
-        holder.tvDate.setText(myTravel.getDate());
-        holder.tvTitle.setText(myTravel.getTitle());
-        holder.tvTitleTravel.setText(myTravel.getTravel().getTitle());
-        holder.tvAddressTravel.setText(myTravel.getTravel().getAddress());
-        holder.imgTravel.setImageResource(myTravel.getTravel().getImage());
-        holder.tvTitleHotel.setText(myTravel.getHotel().getTitle());
-        holder.tvAddressHotel.setText(myTravel.getHotel().getAddress());
-        holder.imgHotel.setImageResource(myTravel.getHotel().getImage());
-        holder.tvTitleRestaurant.setText(myTravel.getRestaurant().getTitle());
-        holder.tvAddressRestaurant.setText(myTravel.getRestaurant().getAddress());
-        holder.imgRestaurant.setImageResource(myTravel.getRestaurant().getImage());
+//        holder.tvDate.setText(myTravel.getDate());
+//        holder.tvTitle.setText(myTravel.getTitle());
+//        holder.tvTitleTravel.setText(myTravel.getTravel().getTitle());
+//        holder.tvAddressTravel.setText(myTravel.getTravel().getAddress());
+//        holder.imgTravel.setImageResource(myTravel.getTravel().getImage());
+//        holder.tvTitleHotel.setText(myTravel.getHotel().getTitle());
+//        holder.tvAddressHotel.setText(myTravel.getHotel().getAddress());
+//        holder.imgHotel.setImageResource(myTravel.getHotel().getImage());
+//        holder.tvTitleRestaurant.setText(myTravel.getRestaurant().getTitle());
+//        holder.tvAddressRestaurant.setText(myTravel.getRestaurant().getAddress());
+//        holder.imgRestaurant.setImageResource(myTravel.getRestaurant().getImage());
     }
 
     @Override

@@ -6,24 +6,33 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.pens.travelme.travelme.R;
-import com.pens.travelme.travelme.modal.Travel;
+import com.pens.travelme.travelme.api.ApiServices;
+import com.pens.travelme.travelme.frag_lets.recommend.RecommendActivity;
+import com.pens.travelme.travelme.modal.Wisata;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ReTravelFragment extends Fragment {
+    public static final String RETRAVEL_FRAG_TAG = "ReTravelFragment";
 
     private RecyclerView rcTravel;
-    private List<Travel> travels = new ArrayList<>();
+    private List<Wisata> travels = new ArrayList<>();
 
     public ReTravelFragment() {
         // Required empty public constructor
@@ -40,61 +49,40 @@ public class ReTravelFragment extends Fragment {
         RecyclerView.LayoutManager travelLayout = new LinearLayoutManager(getContext());
         rcTravel.setLayoutManager(travelLayout);
         rcTravel.setItemAnimator(new DefaultItemAnimator());
-        rcTravel.setAdapter(new ReTravelAdapter(getContext(), travels));
         rcTravel.setFocusable(false);
 
-        loadTravelData();
+        loadWisataData();
 
         return view;
     }
 
-    public void loadTravelData() {
-        Travel travel = new Travel(
-                "Hutan Bambu",
-                "Jalan Raya Marina Asri, Keputih, Sukolilo, Keputih, Sukolilo, Kota Surabaya",
-                "5000",
-                "03177633435",
-                R.drawable.travel3
-        );
-        travels.add(travel);
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().finish();
+    }
 
-        travel = new Travel(
-                "Wisata Mangrove Gunung Anyar",
-                "Jalan Medokan Sawah Timur, Segoro Tambak, Sedati, Medokan Ayu, Rungkut, Kabupaten Sidoarjo",
-                "10000",
-                "03177633900",
-                R.drawable.travel4
-        );
-        travels.add(travel);
+    public void loadWisataData() {
+        ApiServices.service_post.get_r_wisata(
+                "wisata",
+                "alam buatan sejarah",
+                99,
+                999,
+                999999999.0
+        ).enqueue(new Callback<ArrayList<Wisata>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Wisata>> call, Response<ArrayList<Wisata>> response) {
+                travels = response.body();
 
-        travel = new Travel(
-                "Wisata Pantai Kenjeran Lama",
-                "Jl. Raya Pantai Lama No.12, Kenjeran, Bulak, Kota Surabaya",
-                "8000",
-                "03177633896",
-                R.drawable.hotel1
-        );
-        travels.add(travel);
+                rcTravel.setAdapter(new ReTravelAdapter(getContext(), travels, 1, 1, 1, 1, 1));
+                rcTravel.getAdapter().notifyDataSetChanged();
+            }
 
-        travel = new Travel(
-                "Monumen Kapal Selam",
-                "Jalan Pemuda No.39, Embong Kaliasin, Genteng, Embong Kaliasin, Genteng, Kota Surabaya",
-                "15000",
-                "03177633776",
-                R.drawable.hotel2
-        );
-        travels.add(travel);
-
-        travel = new Travel(
-                "Kebun Binatang Surabaya",
-                "Jalan Setail No. 1, Darmo, Wonokromo, Kota Surabaya",
-                "20000",
-                "0317633666",
-                R.drawable.travel3
-        );
-        travels.add(travel);
-
-        rcTravel.getAdapter().notifyDataSetChanged();
+            @Override
+            public void onFailure(Call<ArrayList<Wisata>> call, Throwable t) {
+                Log.d(RETRAVEL_FRAG_TAG, t.getMessage());
+            }
+        });
     }
 
 }

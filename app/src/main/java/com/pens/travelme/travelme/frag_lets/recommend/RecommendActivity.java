@@ -13,11 +13,12 @@ import com.pens.travelme.travelme.frag_lets.recommend.recommend_restaurant.ReRes
 import com.pens.travelme.travelme.frag_lets.recommend.recommend_travel.ReTravelFragment;
 
 public class RecommendActivity extends AppCompatActivity {
+    public static final String RECOMEND_ACTIVITY_TAG = "RecommendActivity";
 
-    private final String TRAVEL = "TRAVEL";
-    private final String HOTEL = "HOTEL";
-    private final String RESTAURANT = "RESTAURANT";
-    private String currentFragment = TRAVEL;
+    public static final String TRAVEL = "TRAVEL";
+    public static final String HOTEL = "HOTEL";
+    public static final String RESTAURANT = "RESTAURANT";
+    public static String currentFragment = TRAVEL;
 
     private RelativeLayout rvNext;
 
@@ -31,16 +32,18 @@ public class RecommendActivity extends AppCompatActivity {
         rvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (currentFragment == TRAVEL) {
-                    loadFragment(new ReHotelFragment());
-                    currentFragment = HOTEL;
-                } else if (currentFragment == HOTEL) {
-                    loadFragment(new ReRestaurantFragment());
-                    currentFragment = RESTAURANT;
-                } else if (currentFragment == RESTAURANT) {
-                    finish();
-                } else {
-                    currentFragment = TRAVEL;
+                switch (currentFragment) {
+                    case TRAVEL:
+                        loadFragment(new ReHotelFragment());
+                        currentFragment = HOTEL;
+                        break;
+                    case HOTEL:
+                        loadFragment(new ReRestaurantFragment());
+                        currentFragment = RESTAURANT;
+                        break;
+                    case RESTAURANT:
+                        finish();
+                        break;
                 }
             }
         });
@@ -51,7 +54,7 @@ public class RecommendActivity extends AppCompatActivity {
     private void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_container, fragment);
-        transaction.disallowAddToBackStack();
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 }

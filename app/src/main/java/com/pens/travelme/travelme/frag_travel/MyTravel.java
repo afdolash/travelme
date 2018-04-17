@@ -1,8 +1,8 @@
 package com.pens.travelme.travelme.frag_travel;
 
-import com.pens.travelme.travelme.modal.Hotel;
-import com.pens.travelme.travelme.modal.Restaurant;
-import com.pens.travelme.travelme.modal.Travel;
+import com.pens.travelme.travelme.modal.Kamar;
+import com.pens.travelme.travelme.modal.Menu;
+import com.pens.travelme.travelme.modal.Wisata;
 
 /**
  * Created by afdol on 4/10/2018.
@@ -10,16 +10,16 @@ import com.pens.travelme.travelme.modal.Travel;
 
 public class MyTravel {
     private String date, title;
-    private Travel travel;
-    private Hotel hotel;
-    private Restaurant restaurant;
+    private Wisata travel;
+    private Kamar kamar;
+    private Menu menu;
 
-    public MyTravel(String date, String title, Travel travel, Hotel hotel, Restaurant restaurant) {
+    public MyTravel(String date, String title, Wisata travel, Kamar kamar, Menu menu) {
         this.date = date;
         this.title = title;
         this.travel = travel;
-        this.hotel = hotel;
-        this.restaurant = restaurant;
+        this.kamar = kamar;
+        this.menu = menu;
     }
 
     public String getDate() {
@@ -30,15 +30,15 @@ public class MyTravel {
         return title;
     }
 
-    public Travel getTravel() {
+    public Wisata getTravel() {
         return travel;
     }
 
-    public Hotel getHotel() {
-        return hotel;
+    public Kamar getKamar() {
+        return kamar;
     }
 
-    public Restaurant getRestaurant() {
-        return restaurant;
+    public Menu getMenu() {
+        return menu;
     }
 }
