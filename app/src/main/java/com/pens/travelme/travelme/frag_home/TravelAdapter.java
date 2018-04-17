@@ -1,18 +1,25 @@
 package com.pens.travelme.travelme.frag_home;
 
 import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.modal.Travel;
+import com.pens.travelme.travelme.modal.Wisata;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by afdol on 4/10/2018.
@@ -20,9 +27,9 @@ import java.util.List;
 
 public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.MyViewHolder> {
     private Context context;
-    private List<Travel> travels;
+    private List<Wisata> travels;
 
-    public TravelAdapter(Context context, List<Travel> travels) {
+    public TravelAdapter(Context context, List<Wisata> travels) {
         this.context = context;
         this.travels = travels;
     }
@@ -35,11 +42,26 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Travel travel = travels.get(position);
+        Wisata wisata = travels.get(position);
 
-        holder.imgItem.setImageResource(travel.getImage());
-        holder.tvTitle.setText(travel.getTitle());
-        holder.tvAddress.setText(travel.getAddress());
+        Geocoder geocoder = new Geocoder(context, Locale.ENGLISH);
+        try {
+            List<Address> addresses = geocoder.getFromLocation(wisata.getPosisi_lat(), wisata.getPosisi_lng(), 1);
+            Toast.makeText(context, ""+ addresses.toString(), Toast.LENGTH_LONG).show();
+
+            if (addresses.size() > 0) {
+                Address fetchedAddress = addresses.get(0);
+                holder.tvAddress.setText(fetchedAddress.getAddressLine(0));
+            } else {
+                holder.tvAddress.setText("-");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("HomeFragment", e.getMessage());
+        }
+
+//        holder.imgItem.setImageResource(wisata.getFoto());
+        holder.tvTitle.setText(wisata.getNama());
     }
 
     @Override

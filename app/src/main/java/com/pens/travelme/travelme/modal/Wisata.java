@@ -22,9 +22,6 @@ public class Wisata {
     private String jam_tutup;
     private String jenis;
 
-    public Wisata() {
-    }
-
     public Wisata(int id_wisata, int id_admin, String nama, String desa, String kecamatan, float tiket_masuk_dewasa, float tiket_masuk_anak, float biaya_parkir_motor, float biaya_parkir_mobil, float biaya_parkir_bus, String foto, String deskripsi, String fasilitas, Double posisi_lat, Double posisi_lng, String akses, String zona, String jam_buka, String jam_tutup, String jenis) {
         this.id_wisata = id_wisata;
         this.id_admin = id_admin;

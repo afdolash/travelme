@@ -1,6 +1,6 @@
 package com.pens.travelme.travelme.api;
 
-import com.codesch.afdolash.meetpoint.model.Event;
+import com.pens.travelme.travelme.modal.Wisata;
 
 import java.util.ArrayList;
 
@@ -34,7 +34,7 @@ public class ApiServices {
     public interface PostService {
         @FormUrlEncoded
         @POST("recomendation")
-        Call<Event> postTravel(
+        Call<ArrayList<Wisata>> postWisata(
                 @Field("jenis_layanan") String jenis_layanan,
                 @Field("wisata_jenis") String wisata_jenis,
                 @Field("wisata_jumlah_anak") int wisata_jumlah_anak,
@@ -51,13 +51,13 @@ public class ApiServices {
                 @Field("budget_kamar") int budget_kamar
         );
 
-        @FormUrlEncoded
-        @POST("recomendation")
-        Call<Event> postResto(
-                @Field("jenis_layanan") String jenis_layanan,
-                @Field("menu_porsi") int menu_porsi,
-                @Field("budget_menu") int budget_menu
-        );
+//        @FormUrlEncoded
+//        @POST("recomendation")
+//        Call<Event> postResto(
+//                @Field("jenis_layanan") String jenis_layanan,
+//                @Field("menu_porsi") int menu_porsi,
+//                @Field("budget_menu") int budget_menu
+//        );
     }
 
     public interface GetService {

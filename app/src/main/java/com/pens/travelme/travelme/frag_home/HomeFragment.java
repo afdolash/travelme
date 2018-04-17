@@ -10,14 +10,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.pens.travelme.travelme.R;
+import com.pens.travelme.travelme.api.ApiServices;
 import com.pens.travelme.travelme.modal.Hotel;
 import com.pens.travelme.travelme.modal.Restaurant;
 import com.pens.travelme.travelme.modal.Travel;
+import com.pens.travelme.travelme.modal.Wisata;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -28,7 +35,7 @@ public class HomeFragment extends Fragment {
     private EditText etSearch;
     private RecyclerView rcTravel, rcRestaurant, rcHotel;
 
-    private List<Travel> travels = new ArrayList<>();
+    private List<Wisata> travels = new ArrayList<>();
     private List<Restaurant> restaurants = new ArrayList<>();
     private List<Hotel> hotels = new ArrayList<>();
 
@@ -51,7 +58,6 @@ public class HomeFragment extends Fragment {
         RecyclerView.LayoutManager travelLayout = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rcTravel.setLayoutManager(travelLayout);
         rcTravel.setItemAnimator(new DefaultItemAnimator());
-        rcTravel.setAdapter(new TravelAdapter(getContext(), travels));
 
         RecyclerView.LayoutManager restaurantLayout = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rcRestaurant.setLayoutManager(restaurantLayout);
@@ -71,52 +77,26 @@ public class HomeFragment extends Fragment {
     }
 
     public void loadTravelData() {
-        Travel travel = new Travel(
-                "Hutan Bambu",
-                "Jalan Raya Marina Asri, Keputih, Sukolilo, Keputih, Sukolilo, Kota Surabaya",
-                "5000",
-                "03177633435",
-                R.drawable.travel3
-        );
-        travels.add(travel);
+        ApiServices.service_post.postWisata(
+                "wisata",
+                "alam buatan ssejarah",
+                99,
+                999,
+                999999999
+        ).enqueue(new Callback<ArrayList<Wisata>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Wisata>> call, Response<ArrayList<Wisata>> response) {
+                travels = response.body();
 
-        travel = new Travel(
-                "Wisata Mangrove Gunung Anyar",
-                "Jalan Medokan Sawah Timur, Segoro Tambak, Sedati, Medokan Ayu, Rungkut, Kabupaten Sidoarjo",
-                "10000",
-                "03177633900",
-                R.drawable.travel4
-        );
-        travels.add(travel);
+                rcTravel.setAdapter(new TravelAdapter(getContext(), travels));
+                rcTravel.getAdapter().notifyDataSetChanged();
+            }
 
-        travel = new Travel(
-                "Wisata Pantai Kenjeran Lama",
-                "Jl. Raya Pantai Lama No.12, Kenjeran, Bulak, Kota Surabaya",
-                "8000",
-                "03177633896",
-                R.drawable.hotel1
-        );
-        travels.add(travel);
-
-        travel = new Travel(
-                "Monumen Kapal Selam",
-                "Jalan Pemuda No.39, Embong Kaliasin, Genteng, Embong Kaliasin, Genteng, Kota Surabaya",
-                "15000",
-                "03177633776",
-                R.drawable.hotel2
-        );
-        travels.add(travel);
-
-        travel = new Travel(
-                "Kebun Binatang Surabaya",
-                "Jalan Setail No. 1, Darmo, Wonokromo, Kota Surabaya",
-                "20000",
-                "0317633666",
-                R.drawable.travel3
-        );
-        travels.add(travel);
-
-        rcTravel.getAdapter().notifyDataSetChanged();
+            @Override
+            public void onFailure(Call<ArrayList<Wisata>> call, Throwable t) {
+                Toast.makeText(getContext(), "Failure...", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void loadRestaurantData() {
