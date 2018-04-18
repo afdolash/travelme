@@ -82,6 +82,9 @@ public class ReTravelFragment extends Fragment {
                 myChoice.getCategoryWisata().toString(),
                 myChoice.getTicketChild(),
                 myChoice.getTicketAdult(),
+                myChoice.getTicketMotor(),
+                myChoice.getTicketCar(),
+                myChoice.getTicketBus(),
                 myChoice.getBudget()
         ).enqueue(new Callback<ArrayList<Wisata>>() {
             @Override
