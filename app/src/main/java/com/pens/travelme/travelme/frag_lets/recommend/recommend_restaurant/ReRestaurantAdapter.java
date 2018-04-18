@@ -1,9 +1,13 @@
 package com.pens.travelme.travelme.frag_lets.recommend.recommend_restaurant;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
@@ -22,6 +26,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.model.LatLng;
 import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.modal.Menu;
+import com.pens.travelme.travelme.modal.MyChoice;
 
 import java.io.IOException;
 import java.util.List;
@@ -38,12 +43,12 @@ public class ReRestaurantAdapter extends RecyclerView.Adapter<ReRestaurantAdapte
 
     private Context context;
     private List<Menu> menus;
-    private int porsi;
+    private MyChoice myChoice;
 
-    public ReRestaurantAdapter(Context context, List<Menu> restaurants, int porsi) {
+    public ReRestaurantAdapter(Context context, List<Menu> menus, MyChoice myChoice) {
         this.context = context;
-        this.menus = restaurants;
-        this.porsi = porsi;
+        this.menus = menus;
+        this.myChoice = myChoice;
     }
 
     @Override
@@ -53,16 +58,56 @@ public class ReRestaurantAdapter extends RecyclerView.Adapter<ReRestaurantAdapte
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
         final Menu menu = menus.get(position);
+        final Double totalHarga = menu.getHarga() * myChoice.getJumPorsi();
 
 //        holder.imgDrink.setImageResource(menu.getDrinks().get(0).getImage());
 //        holder.imgFood.setImageResource(menu.getFoods().get(0).getImage());
 
         holder.tvTitle.setText(menu.getNama());
-        holder.tvPrice.setText("Rp "+ menu.getHarga() * porsi);
-        holder.tvDetailPrice.setText("Jumlah porsi : "+ porsi +"\nHarga per porsi : "+ menu.getHarga());
+        holder.tvPrice.setText("Rp "+ totalHarga);
+        holder.tvDetailPrice.setText("Jumlah porsi : "+ myChoice.getJumPorsi() +"\nHarga per porsi : "+ menu.getHarga());
         holder.tvTime.setText(menu.getKuliner().getJam_buka() +" wib - "+ menu.getKuliner().getJam_tutup() +" wib");
+
+        holder.imgCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                SharedPreferences sharedPreferences = ((Activity)context).getSharedPreferences("myTravel",Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+                if(sharedPreferences.getString("id_menu","").contains(","+String.valueOf(menu.getId_menu()))){
+                    holder.imgCheck.setImageTintList(ColorStateList.valueOf(Color.parseColor("#D5D5D5")));
+                    myChoice.setBudget(myChoice.getBudget()+totalHarga);
+
+                    String add_menu = sharedPreferences.getString("id_menu","");
+                    add_menu = add_menu.replace(","+String.valueOf(menu.getId_menu()),"");
+                    editor.putString("id_menu", String.valueOf(add_menu));
+                    editor.commit();
+                }
+                else {
+                    if (totalHarga>myChoice.getBudget()){
+                        Toast.makeText(context, "Budget anda tidak cukup", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        holder.imgCheck.setImageTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
+
+                        myChoice.setBudget(myChoice.getBudget()-totalHarga);
+
+                        String add_menu = sharedPreferences.getString("id_menu","")+","+menu.getId_menu();
+                        editor.putString("id_menu", String.valueOf(add_menu));
+                        editor.commit();
+                    }
+                }
+
+                Log.d("selectedMenu",sharedPreferences.getString("id_menu",""));
+                Log.d("budget", String.valueOf(myChoice.getBudget()));
+
+
+            }
+        });
 
         holder.imgCall.setOnClickListener(new View.OnClickListener() {
             @Override

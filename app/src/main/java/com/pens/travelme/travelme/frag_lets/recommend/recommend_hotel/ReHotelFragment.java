@@ -75,7 +75,7 @@ public class ReHotelFragment extends Fragment {
             public void onResponse(Call<ArrayList<Kamar>> call, Response<ArrayList<Kamar>> response) {
                 hotels = response.body();
 
-                rcHotel.setAdapter(new ReHotelAdapter(getContext(), hotels, myChoice.getJumKamar()));
+                rcHotel.setAdapter(new ReHotelAdapter(getContext(), hotels, myChoice));
                 rcHotel.getAdapter().notifyDataSetChanged();
             }
 

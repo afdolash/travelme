@@ -20,12 +20,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.model.LatLng;
 import com.pens.travelme.travelme.R;
+import com.pens.travelme.travelme.modal.MyChoice;
 import com.pens.travelme.travelme.modal.Wisata;
 
 import java.io.IOException;
@@ -45,16 +47,12 @@ import static com.pens.travelme.travelme.frag_lets.recommend.recommend_travel.Re
 public class ReTravelAdapter extends RecyclerView.Adapter<ReTravelAdapter.MyViewHolder> {
     private Context context;
     private List<Wisata> travels;
-    private int motor, car, bus, adult, child;
+    private MyChoice myChoice;
 
-    public ReTravelAdapter(Context context, List<Wisata> travels, int motor, int car, int bus, int adult, int child) {
+    public ReTravelAdapter(Context context, List<Wisata> travels, MyChoice myChoice) {
         this.context = context;
         this.travels = travels;
-        this.motor = motor;
-        this.car = car;
-        this.bus = bus;
-        this.adult = adult;
-        this.child = child;
+        this.myChoice = myChoice;
     }
 
     @Override
@@ -67,24 +65,25 @@ public class ReTravelAdapter extends RecyclerView.Adapter<ReTravelAdapter.MyView
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final Wisata wisata = travels.get(position);
 
-        Double totalHarga = motor * wisata.getBiaya_parkir_motor() + car * wisata.getBiaya_parkir_mobil() + bus * wisata.getBiaya_parkir_bus() + adult * wisata.getTiket_masuk_dewasa() + child * wisata.getTiket_masuk_anak();
+        final Double totalHarga = myChoice.getTicketMotor() * wisata.getBiaya_parkir_motor() + myChoice.getTicketCar() * wisata.getBiaya_parkir_mobil() + myChoice.getTicketBus() * wisata.getBiaya_parkir_bus() + myChoice.getTicketAdult() * wisata.getTiket_masuk_dewasa() + myChoice.getTicketChild() * wisata.getTiket_masuk_anak();
 
         String detailPrice = null;
-        if (adult != 0) { detailPrice = "Tiket dewasa : "+ wisata.getTiket_masuk_dewasa().toString() +" x "+ adult +" = "+ adult * wisata.getTiket_masuk_dewasa(); }
-        if (child != 0 && adult != 0) {
-            detailPrice += "\nTiket anak : "+ wisata.getTiket_masuk_anak().toString() +" x "+ child +" = "+ child * wisata.getTiket_masuk_anak();
-        } else if (child != 0) {
-            detailPrice = "Tiket anak : "+ wisata.getTiket_masuk_anak().toString() +" x "+ child +" = "+ child * wisata.getTiket_masuk_anak();
+        if (myChoice.getTicketAdult() != 0) { detailPrice = "Tiket dewasa : "+ wisata.getTiket_masuk_dewasa().toString() +" x "+ myChoice.getTicketAdult() +" = "+ myChoice.getTicketAdult() * wisata.getTiket_masuk_dewasa(); }
+        if (myChoice.getTicketChild() != 0 && myChoice.getTicketAdult() != 0) {
+            detailPrice += "\nTiket anak : "+ wisata.getTiket_masuk_anak().toString() +" x "+ myChoice.getTicketChild() +" = "+ myChoice.getTicketChild() * wisata.getTiket_masuk_anak();
+        } else if (myChoice.getTicketChild() != 0) {
+            detailPrice = "Tiket anak : "+ wisata.getTiket_masuk_anak().toString() +" x "+ myChoice.getTicketChild() +" = "+ myChoice.getTicketChild() * wisata.getTiket_masuk_anak();
         }
-        if (motor != 0) { detailPrice +="\nParkir motor : "+ wisata.getBiaya_parkir_motor() +" x "+ motor +" = "+ motor * wisata.getBiaya_parkir_motor(); }
-        if (car != 0) { detailPrice +="\nParkir mobil : "+ wisata.getBiaya_parkir_mobil() +" x "+ car +" = "+ car * wisata.getBiaya_parkir_mobil(); }
-        if (bus != 0) { detailPrice +="\nParkir bus : "+ wisata.getBiaya_parkir_bus() +" x "+ bus +" = "+ bus * wisata.getBiaya_parkir_bus(); }
+        if (myChoice.getTicketMotor() != 0) { detailPrice +="\nParkir motor : "+ wisata.getBiaya_parkir_motor() +" x "+ myChoice.getTicketMotor() +" = "+ myChoice.getTicketMotor() * wisata.getBiaya_parkir_motor(); }
+        if (myChoice.getTicketCar() != 0) { detailPrice +="\nParkir mobil : "+ wisata.getBiaya_parkir_mobil() +" x "+ myChoice.getTicketCar() +" = "+ myChoice.getTicketCar() * wisata.getBiaya_parkir_mobil(); }
+        if (myChoice.getTicketBus() != 0) { detailPrice +="\nParkir bus : "+ wisata.getBiaya_parkir_bus() +" x "+ myChoice.getTicketBus() +" = "+ myChoice.getTicketBus() * wisata.getBiaya_parkir_bus(); }
 
         holder.tvTitle.setText(wisata.getNama());
         holder.tvPrice.setText("Rp "+ totalHarga.toString());
         holder.tvDetailPrice.setText(detailPrice);
         holder.tvTime.setText(wisata.getJam_buka() +" wib - "+ wisata.getJam_tutup() +" wib");
         holder.imgCall.setVisibility(View.GONE);
+
 
         Glide.with(context)
                 .load(wisata.getFoto())
@@ -116,20 +115,30 @@ public class ReTravelAdapter extends RecyclerView.Adapter<ReTravelAdapter.MyView
                 if(sharedPreferences.getString("id_wisata","").contains(","+String.valueOf(wisata.getId_wisata()))){
                     holder.imgCheck.setImageTintList(ColorStateList.valueOf(Color.parseColor("#D5D5D5")));
 
+                    myChoice.setBudget(myChoice.getBudget()+totalHarga);
+
                     String add_wisata = sharedPreferences.getString("id_wisata","");
                     add_wisata = add_wisata.replace(","+String.valueOf(wisata.getId_wisata()),"");
                     editor.putString("id_wisata", String.valueOf(add_wisata));
                     editor.commit();
                 }
                 else {
-                    holder.imgCheck.setImageTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
+                    if (totalHarga>myChoice.getBudget()){
+                        Toast.makeText(context, "Budget anda tidak cukup", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        holder.imgCheck.setImageTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
 
-                    String add_wisata = sharedPreferences.getString("id_wisata","")+","+wisata.getId_wisata();
-                    editor.putString("id_wisata", String.valueOf(add_wisata));
-                    editor.commit();
+                        myChoice.setBudget(myChoice.getBudget()-totalHarga);
+
+                        String add_wisata = sharedPreferences.getString("id_wisata","")+","+wisata.getId_wisata();
+                        editor.putString("id_wisata", String.valueOf(add_wisata));
+                        editor.commit();
+                    }
                 }
 
                 Log.d("selectedTravel",sharedPreferences.getString("id_wisata",""));
+                Log.d("budget", String.valueOf(myChoice.getBudget()));
 
             }
         });
@@ -146,6 +155,7 @@ public class ReTravelAdapter extends RecyclerView.Adapter<ReTravelAdapter.MyView
         private CardView cardItem;
         private ImageView imgItem, imgCall, imgCheck;
         private TextView tvTitle, tvAddress, tvPrice, tvDetailPrice, tvTime;
+        private LinearLayout lnItem;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -159,6 +169,7 @@ public class ReTravelAdapter extends RecyclerView.Adapter<ReTravelAdapter.MyView
             tvPrice = (TextView) itemView.findViewById(R.id.tv_price);
             tvDetailPrice = (TextView) itemView.findViewById(R.id.tv_detail_price);
             tvTime = (TextView) itemView.findViewById(R.id.tv_time);
+            lnItem = (LinearLayout) itemView.findViewById(R.id.ln_item);
         }
     }
 }

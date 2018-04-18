@@ -91,7 +91,7 @@ public class ReTravelFragment extends Fragment {
             public void onResponse(Call<ArrayList<Wisata>> call, Response<ArrayList<Wisata>> response) {
                 travels = response.body();
 
-                rcTravel.setAdapter(new ReTravelAdapter(getContext(), travels, myChoice.getTicketMotor(), myChoice.getTicketCar(), myChoice.getTicketBus(), myChoice.getTicketAdult(), myChoice.getTicketChild()));
+                rcTravel.setAdapter(new ReTravelAdapter(getContext(), travels, myChoice));
                 rcTravel.getAdapter().notifyDataSetChanged();
             }
 
