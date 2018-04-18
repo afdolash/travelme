@@ -6,11 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.frag_lets.recommend.recommend_hotel.ReHotelFragment;
 import com.pens.travelme.travelme.frag_lets.recommend.recommend_restaurant.ReRestaurantFragment;
 import com.pens.travelme.travelme.frag_lets.recommend.recommend_travel.ReTravelFragment;
+import com.pens.travelme.travelme.modal.MyChoice;
+
+import static com.pens.travelme.travelme.frag_lets.LetsActivity.MYCHOICE;
 
 public class RecommendActivity extends AppCompatActivity {
     public static final String RECOMEND_ACTIVITY_TAG = "RecommendActivity";
@@ -20,6 +24,11 @@ public class RecommendActivity extends AppCompatActivity {
     public static final String RESTAURANT = "RESTAURANT";
     public static String currentFragment = TRAVEL;
 
+    public MyChoice getMyChoice() {
+        return myChoice;
+    }
+
+    private MyChoice myChoice = new MyChoice();
     private RelativeLayout rvNext;
 
     @Override
@@ -27,8 +36,9 @@ public class RecommendActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommend);
 
-        rvNext = (RelativeLayout) findViewById(R.id.rv_next);
+        myChoice = getIntent().getParcelableExtra(MYCHOICE);
 
+        rvNext = (RelativeLayout) findViewById(R.id.rv_next);
         rvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

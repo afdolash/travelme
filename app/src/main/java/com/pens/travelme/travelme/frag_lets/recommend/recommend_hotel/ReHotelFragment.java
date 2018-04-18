@@ -15,6 +15,7 @@ import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.api.ApiServices;
 import com.pens.travelme.travelme.frag_lets.recommend.RecommendActivity;
 import com.pens.travelme.travelme.modal.Kamar;
+import com.pens.travelme.travelme.modal.MyChoice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,17 +63,19 @@ public class ReHotelFragment extends Fragment {
     }
 
     public void loadHotelData() {
+        final MyChoice myChoice = ((RecommendActivity) getActivity()).getMyChoice();
+
         ApiServices.service_post.get_r_kamar(
                 "kamar",
-                1,
-                10,
-                999999999.0
+                myChoice.getJumKamar(),
+                myChoice.getJumDay(),
+                myChoice.getBudget()
         ).enqueue(new Callback<ArrayList<Kamar>>() {
             @Override
             public void onResponse(Call<ArrayList<Kamar>> call, Response<ArrayList<Kamar>> response) {
                 hotels = response.body();
 
-                rcHotel.setAdapter(new ReHotelAdapter(getContext(), hotels, 1));
+                rcHotel.setAdapter(new ReHotelAdapter(getContext(), hotels, myChoice.getJumKamar()));
                 rcHotel.getAdapter().notifyDataSetChanged();
             }
 

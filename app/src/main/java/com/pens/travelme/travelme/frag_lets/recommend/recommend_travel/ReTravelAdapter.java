@@ -80,8 +80,6 @@ public class ReTravelAdapter extends RecyclerView.Adapter<ReTravelAdapter.MyView
         if (car != 0) { detailPrice +="\nParkir mobil : "+ wisata.getBiaya_parkir_mobil() +" x "+ car +" = "+ car * wisata.getBiaya_parkir_mobil(); }
         if (bus != 0) { detailPrice +="\nParkir bus : "+ wisata.getBiaya_parkir_bus() +" x "+ bus +" = "+ bus * wisata.getBiaya_parkir_bus(); }
 
-
-//        holder.imgItem.setImageResource(wisata.getFoto());
         holder.tvTitle.setText(wisata.getNama());
         holder.tvPrice.setText("Rp "+ totalHarga.toString());
         holder.tvDetailPrice.setText(detailPrice);

@@ -16,6 +16,7 @@ import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.api.ApiServices;
 import com.pens.travelme.travelme.frag_lets.recommend.RecommendActivity;
 import com.pens.travelme.travelme.modal.Menu;
+import com.pens.travelme.travelme.modal.MyChoice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,16 +65,18 @@ public class ReRestaurantFragment extends Fragment {
     }
 
     public void loadMenuData() {
+        final MyChoice myChoice = ((RecommendActivity) getActivity()).getMyChoice();
+
         ApiServices.service_post.get_r_menu(
                 "menu",
-                99,
-                999999999.0
+                myChoice.getJumPorsi(),
+                myChoice.getBudget()
         ).enqueue(new Callback<ArrayList<Menu>>() {
             @Override
             public void onResponse(Call<ArrayList<Menu>> call, Response<ArrayList<Menu>> response) {
                 menus = response.body();
 
-                rcRestaurant.setAdapter(new ReRestaurantAdapter(getContext(), menus, 9));
+                rcRestaurant.setAdapter(new ReRestaurantAdapter(getContext(), menus, myChoice.getJumPorsi()));
                 rcRestaurant.getAdapter().notifyDataSetChanged();
             }
 
