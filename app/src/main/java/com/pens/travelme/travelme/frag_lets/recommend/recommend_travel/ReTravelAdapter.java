@@ -1,9 +1,14 @@
 package com.pens.travelme.travelme.frag_lets.recommend.recommend_travel;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
@@ -24,8 +29,10 @@ import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.modal.Wisata;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import static com.pens.travelme.travelme.frag_home.HomeFragment.HOME_FRAG_TAG;
 import static com.pens.travelme.travelme.frag_lets.recommend.recommend_restaurant.ReRestaurantFragment.RERESTO_FRAG_TAG;
@@ -57,7 +64,7 @@ public class ReTravelAdapter extends RecyclerView.Adapter<ReTravelAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
         final Wisata wisata = travels.get(position);
 
         Double totalHarga = motor * wisata.getBiaya_parkir_motor() + car * wisata.getBiaya_parkir_mobil() + bus * wisata.getBiaya_parkir_bus() + adult * wisata.getTiket_masuk_dewasa() + child * wisata.getTiket_masuk_anak();
@@ -100,6 +107,34 @@ public class ReTravelAdapter extends RecyclerView.Adapter<ReTravelAdapter.MyView
             Log.e(HOME_FRAG_TAG, e.getMessage());
             holder.tvAddress.setText("-");
         }
+
+        holder.imgCheck.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onClick(View view) {
+                SharedPreferences sharedPreferences = ((Activity)context).getSharedPreferences("myTravel",Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                if(sharedPreferences.getString("id_wisata","").contains(","+String.valueOf(wisata.getId_wisata()))){
+                    holder.imgCheck.setImageTintList(ColorStateList.valueOf(Color.parseColor("#D5D5D5")));
+
+                    String add_wisata = sharedPreferences.getString("id_wisata","");
+                    add_wisata = add_wisata.replace(","+String.valueOf(wisata.getId_wisata()),"");
+                    editor.putString("id_wisata", String.valueOf(add_wisata));
+                    editor.commit();
+                }
+                else {
+                    holder.imgCheck.setImageTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
+
+                    String add_wisata = sharedPreferences.getString("id_wisata","")+","+wisata.getId_wisata();
+                    editor.putString("id_wisata", String.valueOf(add_wisata));
+                    editor.commit();
+                }
+
+                Log.d("selectedTravel",sharedPreferences.getString("id_wisata",""));
+
+            }
+        });
     }
 
     @Override
