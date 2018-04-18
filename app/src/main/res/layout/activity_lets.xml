@@ -585,51 +585,6 @@
 
                         </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="17dp"
-                            android:fontFamily="@font/segoe"
-                            android:text="Waktu"
-                            android:textColor="@color/colorBlackLb"
-                            android:textSize="10sp" />
-
-                        <LinearLayout
-                            android:id="@+id/ln_wisata_date"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="10dp"
-                            android:paddingTop="10dp"
-                            android:paddingRight="14dp"
-                            android:paddingLeft="14dp"
-                            android:layout_marginLeft="2dp"
-                            android:layout_marginRight="2dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="4dp"
-                            android:gravity="center_vertical"
-                            android:elevation="2dp"
-                            android:orientation="horizontal"
-                            android:background="@drawable/ic_reg_white">
-
-                            <ImageView
-                                android:layout_width="12dp"
-                                android:layout_height="12dp"
-                                android:src="@drawable/ic_ai_travel"
-                                android:tint="@color/colorBlackLb"
-                                android:layout_marginRight="14dp"/>
-
-                            <TextView
-                                android:id="@+id/tv_wisata_date"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Pilih hari dan tanggal"
-                                android:textSize="10sp"
-                                android:textColor="@color/colorBlackLc"
-                                android:maxLines="1"
-                                android:fontFamily="@font/segoe"/>
-
-                        </LinearLayout>
-
                     </LinearLayout>
 
                 </LinearLayout>
@@ -756,51 +711,6 @@
                                     android:tint="@color/colorBlackLc"/>
 
                             </RelativeLayout>
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="17dp"
-                            android:fontFamily="@font/segoe"
-                            android:text="Waktu"
-                            android:textColor="@color/colorBlackLb"
-                            android:textSize="10sp" />
-
-                        <LinearLayout
-                            android:id="@+id/ln_kuliner_date"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="10dp"
-                            android:paddingTop="10dp"
-                            android:paddingRight="14dp"
-                            android:paddingLeft="14dp"
-                            android:layout_marginLeft="2dp"
-                            android:layout_marginRight="2dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="4dp"
-                            android:gravity="center_vertical"
-                            android:elevation="2dp"
-                            android:orientation="horizontal"
-                            android:background="@drawable/ic_reg_white">
-
-                            <ImageView
-                                android:layout_width="12dp"
-                                android:layout_height="12dp"
-                                android:src="@drawable/ic_ai_travel"
-                                android:tint="@color/colorBlackLb"
-                                android:layout_marginRight="14dp"/>
-
-                            <TextView
-                                android:id="@+id/tv_kuliner_date"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Pilih hari dan tanggal"
-                                android:textSize="10sp"
-                                android:textColor="@color/colorBlackLc"
-                                android:maxLines="1"
-                                android:fontFamily="@font/segoe"/>
 
                         </LinearLayout>
 
@@ -938,79 +848,60 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="17dp"
                             android:fontFamily="@font/segoe"
-                            android:text="Waktu"
+                            android:text="Jumlah hari"
                             android:textColor="@color/colorBlackLb"
                             android:textSize="10sp" />
 
                         <LinearLayout
-                            android:id="@+id/ln_checkin_date"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingBottom="10dp"
-                            android:paddingTop="10dp"
-                            android:paddingRight="14dp"
-                            android:paddingLeft="14dp"
-                            android:layout_marginLeft="2dp"
-                            android:layout_marginRight="2dp"
                             android:layout_marginTop="8dp"
-                            android:layout_marginBottom="4dp"
-                            android:gravity="center_vertical"
-                            android:elevation="2dp"
                             android:orientation="horizontal"
-                            android:background="@drawable/ic_reg_white">
+                            android:gravity="center">
 
-                            <ImageView
-                                android:layout_width="12dp"
-                                android:layout_height="12dp"
-                                android:src="@drawable/ic_ai_travel"
-                                android:tint="@color/colorBlackLb"
-                                android:layout_marginRight="14dp"/>
-
-                            <TextView
-                                android:id="@+id/tv_checkin_date"
+                            <RelativeLayout
+                                android:id="@+id/rv_day_min"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Pilih hari dan tanggal check-in"
-                                android:textSize="10sp"
-                                android:textColor="@color/colorBlackLc"
-                                android:maxLines="1"
-                                android:fontFamily="@font/segoe"/>
+                                android:layout_margin="4dp"
+                                android:background="@drawable/ic_circle_white"
+                                android:elevation="2dp">
 
-                        </LinearLayout>
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_ai_minus"
+                                    android:tint="@color/colorBlackLc"/>
 
-                        <LinearLayout
-                            android:id="@+id/ln_checkout_date"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="10dp"
-                            android:paddingTop="10dp"
-                            android:paddingRight="14dp"
-                            android:paddingLeft="14dp"
-                            android:layout_marginLeft="2dp"
-                            android:layout_marginRight="2dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="4dp"
-                            android:gravity="center_vertical"
-                            android:elevation="2dp"
-                            android:orientation="horizontal"
-                            android:background="@drawable/ic_reg_white">
-
-                            <ImageView
-                                android:layout_width="12dp"
-                                android:layout_height="12dp"
-                                android:src="@drawable/ic_ai_travel"
-                                android:tint="@color/colorBlackLb"
-                                android:layout_marginRight="14dp"/>
+                            </RelativeLayout>
 
                             <TextView
-                                android:id="@+id/tv_checkout_date"
+                                android:id="@+id/tv_day"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Pilih hari dan tanggal check-out"
+                                android:text="0"
                                 android:textSize="10sp"
-                                android:textColor="@color/colorBlackLc"
-                                android:maxLines="1"
+                                android:textColor="@color/colorBlackLb"
+                                android:textStyle="bold"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
                                 android:fontFamily="@font/segoe"/>
+
+                            <RelativeLayout
+                                android:id="@+id/rv_day_plus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="4dp"
+                                android:background="@drawable/ic_circle_white"
+                                android:elevation="2dp">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_ai_plus"
+                                    android:tint="@color/colorBlackLc"/>
+
+                            </RelativeLayout>
 
                         </LinearLayout>
 

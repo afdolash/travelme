@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.api.ApiServices;
 import com.pens.travelme.travelme.frag_lets.recommend.RecommendActivity;
+import com.pens.travelme.travelme.modal.MyChoice;
 import com.pens.travelme.travelme.modal.Wisata;
 
 import java.util.ArrayList;
@@ -63,18 +64,21 @@ public class ReTravelFragment extends Fragment {
     }
 
     public void loadWisataData() {
+        final MyChoice myChoice = ((RecommendActivity) getActivity()).getMyChoice();
+        Toast.makeText(getContext(), myChoice.getBudget().toString(), Toast.LENGTH_SHORT).show();
+
         ApiServices.service_post.get_r_wisata(
                 "wisata",
-                "alam buatan sejarah",
-                99,
-                999,
-                999999999.0
+                myChoice.getCategoryWisata().toString(),
+                myChoice.getTicketChild(),
+                myChoice.getTicketAdult(),
+                myChoice.getBudget()
         ).enqueue(new Callback<ArrayList<Wisata>>() {
             @Override
             public void onResponse(Call<ArrayList<Wisata>> call, Response<ArrayList<Wisata>> response) {
                 travels = response.body();
 
-                rcTravel.setAdapter(new ReTravelAdapter(getContext(), travels, 1, 1, 1, 1, 1));
+                rcTravel.setAdapter(new ReTravelAdapter(getContext(), travels, myChoice.getTicketMotor(), myChoice.getTicketCar(), myChoice.getTicketBus(), myChoice.getTicketAdult(), myChoice.getTicketChild()));
                 rcTravel.getAdapter().notifyDataSetChanged();
             }
 
