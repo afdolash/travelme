@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.model.LatLng;
 import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.modal.Kuliner;
@@ -48,31 +49,32 @@ public class KulinerAdapter extends RecyclerView.Adapter<KulinerAdapter.MyViewHo
     public void onBindViewHolder(KulinerAdapter.MyViewHolder holder, int position) {
         Kuliner kuliner = restaurants.get(position);
 
-//        holder.imgItem.setImageResource(kuliner.getFoto());
         holder.tvTitle.setText(kuliner.getNama());
-        holder.tvAddress.setText(getAddress(new LatLng(kuliner.getPosisi_lat(), kuliner.getPosisi_lng())));
+
+        Glide.with(context)
+                .load(kuliner.getFoto())
+                .into(holder.imgItem);
+
+        Geocoder geocoder = new Geocoder(context, Locale.ENGLISH);
+        try {
+            List<Address> addresses = geocoder.getFromLocation(kuliner.getPosisi_lat(), kuliner.getPosisi_lng(), 1);
+
+            if (addresses.size() > 0) {
+                Address fetchedAddress = addresses.get(0);
+                holder.tvAddress.setText(fetchedAddress.getAddressLine(0));
+            } else {
+                holder.tvAddress.setText("-");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e(HOME_FRAG_TAG, e.getMessage());
+            holder.tvAddress.setText("-");
+        }
     }
 
     @Override
     public int getItemCount() {
         return restaurants.size();
-    }
-
-
-    private String getAddress(LatLng latLng) {
-        Geocoder geocoder = new Geocoder(context, Locale.ENGLISH);
-        try {
-            List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
-
-            if (addresses.size() > 0) {
-                Address fetchedAddress = addresses.get(0);
-                return fetchedAddress.getAddressLine(0);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e(HOME_FRAG_TAG, e.getMessage());
-        }
-        return "-";
     }
 
 

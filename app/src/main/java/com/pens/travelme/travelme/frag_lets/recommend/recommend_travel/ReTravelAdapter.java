@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.model.LatLng;
 import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.modal.Wisata;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import static com.pens.travelme.travelme.frag_home.HomeFragment.HOME_FRAG_TAG;
 import static com.pens.travelme.travelme.frag_lets.recommend.recommend_restaurant.ReRestaurantFragment.RERESTO_FRAG_TAG;
 import static com.pens.travelme.travelme.frag_lets.recommend.recommend_travel.ReTravelFragment.RETRAVEL_FRAG_TAG;
 
@@ -74,33 +76,35 @@ public class ReTravelAdapter extends RecyclerView.Adapter<ReTravelAdapter.MyView
 
 //        holder.imgItem.setImageResource(wisata.getFoto());
         holder.tvTitle.setText(wisata.getNama());
-        holder.tvAddress.setText(getAddress(new LatLng(wisata.getPosisi_lat(), wisata.getPosisi_lng())));
         holder.tvPrice.setText("Rp "+ totalHarga.toString());
         holder.tvDetailPrice.setText(detailPrice);
         holder.tvTime.setText(wisata.getJam_buka() +" wib - "+ wisata.getJam_tutup() +" wib");
         holder.imgCall.setVisibility(View.GONE);
+
+        Glide.with(context)
+                .load(wisata.getFoto())
+                .into(holder.imgItem);
+
+        Geocoder geocoder = new Geocoder(context, Locale.ENGLISH);
+        try {
+            List<Address> addresses = geocoder.getFromLocation(wisata.getPosisi_lat(), wisata.getPosisi_lng(), 1);
+
+            if (addresses.size() > 0) {
+                Address fetchedAddress = addresses.get(0);
+                holder.tvAddress.setText(fetchedAddress.getAddressLine(0));
+            } else {
+                holder.tvAddress.setText("-");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e(HOME_FRAG_TAG, e.getMessage());
+            holder.tvAddress.setText("-");
+        }
     }
 
     @Override
     public int getItemCount() {
         return travels.size();
-    }
-
-
-    private String getAddress(LatLng latLng) {
-        Geocoder geocoder = new Geocoder(context, Locale.ENGLISH);
-        try {
-            List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
-
-            if (addresses.size() > 0) {
-                Address fetchedAddress = addresses.get(0);
-                return fetchedAddress.getAddressLine(0);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e(RETRAVEL_FRAG_TAG, e.getMessage());
-        }
-        return "-";
     }
 
 

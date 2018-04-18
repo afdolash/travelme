@@ -166,12 +166,14 @@
                                 android:layout_marginRight="15dp"
                                 android:layout_marginBottom="17dp"
                                 android:layout_marginLeft="2dp"
+                                android:layout_marginTop="8dp"
                                 android:gravity="center"
                                 android:elevation="2dp"
                                 android:orientation="horizontal"
                                 android:background="@drawable/ic_reg_white">
 
                                 <ImageView
+                                    android:id="@+id/img_cat_alam"
                                     android:layout_width="12dp"
                                     android:layout_height="12dp"
                                     android:src="@drawable/ic_ai_nature"
@@ -179,6 +181,7 @@
                                     android:layout_marginRight="10dp"/>
 
                                 <TextView
+                                    android:id="@+id/tv_cat_alam"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Alam"
@@ -193,6 +196,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="34dp"
                                 android:layout_marginBottom="17dp"
+                                android:layout_marginTop="8dp"
                                 android:background="@drawable/ic_reg_white"
                                 android:elevation="2dp"
                                 android:gravity="center"
@@ -203,6 +207,7 @@
                                 android:paddingTop="10dp">
 
                                 <ImageView
+                                    android:id="@+id/img_cat_buatan"
                                     android:layout_width="12dp"
                                     android:layout_height="12dp"
                                     android:layout_marginRight="10dp"
@@ -210,6 +215,7 @@
                                     android:tint="@color/colorBlackLb" />
 
                                 <TextView
+                                    android:id="@+id/tv_cat_buatan"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/segoe"
@@ -273,7 +279,7 @@
                                         android:id="@+id/tv_motor"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="2"
+                                        android:text="0"
                                         android:textSize="10sp"
                                         android:textColor="@color/colorBlackLb"
                                         android:textStyle="bold"
@@ -340,7 +346,7 @@
                                         android:id="@+id/tv_car"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="2"
+                                        android:text="0"
                                         android:textSize="10sp"
                                         android:textColor="@color/colorBlackLb"
                                         android:textStyle="bold"
@@ -414,7 +420,7 @@
                                         android:id="@+id/tv_bus"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="2"
+                                        android:text="0"
                                         android:textSize="10sp"
                                         android:textColor="@color/colorBlackLb"
                                         android:textStyle="bold"
@@ -492,7 +498,7 @@
                                     android:id="@+id/tv_adult"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="2"
+                                    android:text="0"
                                     android:textSize="10sp"
                                     android:textColor="@color/colorBlackLb"
                                     android:textStyle="bold"
@@ -551,7 +557,7 @@
                                     android:id="@+id/tv_child"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="2"
+                                    android:text="0"
                                     android:textSize="10sp"
                                     android:textColor="@color/colorBlackLb"
                                     android:textStyle="bold"
@@ -727,7 +733,7 @@
                                 android:id="@+id/tv_porsi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="2"
+                                android:text="0"
                                 android:textSize="10sp"
                                 android:textColor="@color/colorBlackLb"
                                 android:textStyle="bold"
@@ -901,7 +907,7 @@
                                 android:id="@+id/tv_kamar"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="2"
+                                android:text="0"
                                 android:textSize="10sp"
                                 android:textColor="@color/colorBlackLb"
                                 android:textStyle="bold"

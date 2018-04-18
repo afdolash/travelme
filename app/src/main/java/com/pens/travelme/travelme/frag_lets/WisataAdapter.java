@@ -1,4 +1,4 @@
-package com.pens.travelme.travelme.frag_home;
+package com.pens.travelme.travelme.frag_lets;
 
 import android.content.Context;
 import android.location.Address;
@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.model.LatLng;
+import com.bumptech.glide.Glide;
 import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.modal.Wisata;
 
@@ -45,31 +45,32 @@ public class WisataAdapter extends RecyclerView.Adapter<WisataAdapter.MyViewHold
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Wisata wisata = travels.get(position);
 
-//        holder.imgItem.setImageResource(wisata.getFoto());
         holder.tvTitle.setText(wisata.getNama());
-        holder.tvAddress.setText(getAddress(new LatLng(wisata.getPosisi_lat(), wisata.getPosisi_lng())));
+
+        Glide.with(context)
+                .load(wisata.getFoto())
+                .into(holder.imgItem);
+
+        Geocoder geocoder = new Geocoder(context, Locale.ENGLISH);
+        try {
+            List<Address> addresses = geocoder.getFromLocation(wisata.getPosisi_lat(), wisata.getPosisi_lng(), 1);
+
+            if (addresses.size() > 0) {
+                Address fetchedAddress = addresses.get(0);
+                holder.tvAddress.setText(fetchedAddress.getAddressLine(0));
+            } else {
+                holder.tvAddress.setText("-");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e(HOME_FRAG_TAG, e.getMessage());
+            holder.tvAddress.setText("-");
+        }
     }
 
     @Override
     public int getItemCount() {
         return travels.size();
-    }
-
-
-    private String getAddress(LatLng latLng) {
-        Geocoder geocoder = new Geocoder(context, Locale.ENGLISH);
-        try {
-            List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
-
-            if (addresses.size() > 0) {
-                Address fetchedAddress = addresses.get(0);
-                return fetchedAddress.getAddressLine(0);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e(HOME_FRAG_TAG, e.getMessage());
-        }
-        return "-";
     }
 
 

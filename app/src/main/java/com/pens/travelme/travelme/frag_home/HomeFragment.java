@@ -11,10 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.api.ApiServices;
+import com.pens.travelme.travelme.frag_lets.WisataAdapter;
 import com.pens.travelme.travelme.modal.Kuliner;
 import com.pens.travelme.travelme.modal.Penginapan;
 import com.pens.travelme.travelme.modal.Wisata;
@@ -69,8 +69,9 @@ public class HomeFragment extends Fragment {
         rcHotel.setItemAnimator(new DefaultItemAnimator());
 
         loadWisataData();
-        loadPenginapanData();
         loadKulinerData();
+        loadPenginapanData();
+
 
         return view;
     }
@@ -92,23 +93,6 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    public void loadPenginapanData() {
-        ApiServices.service_post.get_all_penginapan(0).enqueue(new Callback<ArrayList<Penginapan>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Penginapan>> call, Response<ArrayList<Penginapan>> response) {
-                hotels = response.body();
-
-                rcHotel.setAdapter(new PenginapanAdapter(getContext(), hotels));
-                rcHotel.getAdapter().notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Penginapan>> call, Throwable t) {
-                Log.d(HOME_FRAG_TAG, t.getMessage());
-            }
-        });
-    }
-
     public void loadKulinerData() {
         ApiServices.service_post.get_all_kuliner(0).enqueue(new Callback<ArrayList<Kuliner>>() {
             @Override
@@ -121,6 +105,23 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ArrayList<Kuliner>> call, Throwable t) {
+                Log.d(HOME_FRAG_TAG, t.getMessage());
+            }
+        });
+    }
+
+    public void loadPenginapanData() {
+        ApiServices.service_post.get_all_penginapan(0).enqueue(new Callback<ArrayList<Penginapan>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Penginapan>> call, Response<ArrayList<Penginapan>> response) {
+                hotels = response.body();
+
+                rcHotel.setAdapter(new PenginapanAdapter(getContext(), hotels));
+                rcHotel.getAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Penginapan>> call, Throwable t) {
                 Log.d(HOME_FRAG_TAG, t.getMessage());
             }
         });

@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.model.LatLng;
 import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.modal.Kamar;
@@ -48,31 +49,33 @@ public class PenginapanAdapter extends RecyclerView.Adapter<PenginapanAdapter.My
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Penginapan penginapan = hotels.get(position);
 
-//        holder.imgItem.setImageResource(hotel.getImage());
         holder.tvTitle.setText(penginapan.getNama());
-        holder.tvAddress.setText(getAddress(new LatLng(penginapan.getPosisi_lat(), penginapan.getPosisi_lng())));
+
+        Glide.with(context)
+                .load(penginapan.getFoto())
+                .into(holder.imgItem);
+
+        Geocoder geocoder = new Geocoder(context, Locale.ENGLISH);
+        try {
+            List<Address> addresses = geocoder.getFromLocation(penginapan.getPosisi_lat(), penginapan.getPosisi_lng(), 1);
+
+            if (addresses.size() > 0) {
+                Address fetchedAddress = addresses.get(0);
+                holder.tvAddress.setText(fetchedAddress.getAddressLine(0));
+            } else {
+                holder.tvAddress.setText("-");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e(HOME_FRAG_TAG, e.getMessage());
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+            holder.tvAddress.setText("-");
+        }
     }
 
     @Override
     public int getItemCount() {
         return hotels.size();
-    }
-
-
-    private String getAddress(LatLng latLng) {
-        Geocoder geocoder = new Geocoder(context, Locale.ENGLISH);
-        try {
-            List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
-
-            if (addresses.size() > 0) {
-                Address fetchedAddress = addresses.get(0);
-                return fetchedAddress.getAddressLine(0);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e(HOME_FRAG_TAG, e.getMessage());
-        }
-        return "-";
     }
 
 

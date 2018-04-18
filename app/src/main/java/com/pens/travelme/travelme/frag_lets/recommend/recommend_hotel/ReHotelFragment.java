@@ -64,15 +64,15 @@ public class ReHotelFragment extends Fragment {
     public void loadHotelData() {
         ApiServices.service_post.get_r_kamar(
                 "kamar",
-                99,
-                99,
+                1,
+                10,
                 999999999.0
         ).enqueue(new Callback<ArrayList<Kamar>>() {
             @Override
             public void onResponse(Call<ArrayList<Kamar>> call, Response<ArrayList<Kamar>> response) {
                 hotels = response.body();
 
-                rcHotel.setAdapter(new ReHotelAdapter(getContext(), hotels, 9));
+                rcHotel.setAdapter(new ReHotelAdapter(getContext(), hotels, 1));
                 rcHotel.getAdapter().notifyDataSetChanged();
             }
 

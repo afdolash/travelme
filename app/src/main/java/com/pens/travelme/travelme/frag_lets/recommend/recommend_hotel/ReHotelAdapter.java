@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.model.LatLng;
 import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.modal.Kamar;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import static com.pens.travelme.travelme.frag_home.HomeFragment.HOME_FRAG_TAG;
 import static com.pens.travelme.travelme.frag_lets.recommend.recommend_hotel.ReHotelFragment.REHOTEL_FRAG_TAG;
 
 /**
@@ -54,9 +56,7 @@ public class ReHotelAdapter extends RecyclerView.Adapter<ReHotelAdapter.MyViewHo
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final Kamar kamar = hotels.get(position);
 
-//        holder.imgItem.setImageResource(kamar.getImage());
         holder.tvTitle.setText(kamar.getNama());
-        holder.tvAddress.setText(getAddress(new LatLng(kamar.getPenginapan().getPosisi_lat(), kamar.getPenginapan().getPosisi_lng())));
         holder.tvPrice.setText("Rp "+ kamar.getHarga() * room);
         holder.tvDetailPrice.setText("Jumlah kamar : "+ room +"\nHarga kamar : "+ kamar.getHarga());
         holder.tvTime.setVisibility(View.GONE);
@@ -70,28 +70,31 @@ public class ReHotelAdapter extends RecyclerView.Adapter<ReHotelAdapter.MyViewHo
                 }
             }
         });
+
+        Glide.with(context)
+                .load(kamar.getPenginapan().getFoto())
+                .into(holder.imgItem);
+
+        Geocoder geocoder = new Geocoder(context, Locale.ENGLISH);
+        try {
+            List<Address> addresses = geocoder.getFromLocation(kamar.getPenginapan().getPosisi_lat(), kamar.getPenginapan().getPosisi_lng(), 1);
+
+            if (addresses.size() > 0) {
+                Address fetchedAddress = addresses.get(0);
+                holder.tvAddress.setText(fetchedAddress.getAddressLine(0));
+            } else {
+                holder.tvAddress.setText("-");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e(HOME_FRAG_TAG, e.getMessage());
+            holder.tvAddress.setText("-");
+        }
     }
 
     @Override
     public int getItemCount() {
         return hotels.size();
-    }
-
-
-    private String getAddress(LatLng latLng) {
-        Geocoder geocoder = new Geocoder(context, Locale.ENGLISH);
-        try {
-            List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
-
-            if (addresses.size() > 0) {
-                Address fetchedAddress = addresses.get(0);
-                return fetchedAddress.getAddressLine(0);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e(REHOTEL_FRAG_TAG, e.getMessage());
-        }
-        return "-";
     }
 
 

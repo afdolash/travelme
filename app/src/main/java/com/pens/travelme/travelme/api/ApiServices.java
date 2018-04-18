@@ -72,7 +72,7 @@ public class ApiServices {
         Call<ArrayList<Wisata>> get_all_wisata(@Field("id") int id);
 
         @FormUrlEncoded
-        @POST("all_wisata")
+        @POST("all_penginapan")
         Call<ArrayList<Penginapan>> get_all_penginapan(@Field("id") int id);
     }
 

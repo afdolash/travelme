@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.model.LatLng;
 import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.modal.Menu;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import static com.pens.travelme.travelme.frag_home.HomeFragment.HOME_FRAG_TAG;
 import static com.pens.travelme.travelme.frag_lets.recommend.recommend_restaurant.ReRestaurantFragment.RERESTO_FRAG_TAG;
 
 /**
@@ -58,7 +60,6 @@ public class ReRestaurantAdapter extends RecyclerView.Adapter<ReRestaurantAdapte
 //        holder.imgFood.setImageResource(menu.getFoods().get(0).getImage());
 
         holder.tvTitle.setText(menu.getNama());
-        holder.tvAddress.setText(getAddress(new LatLng(menu.getKuliner().getPosisi_lat(), menu.getKuliner().getPosisi_lng())));
         holder.tvPrice.setText("Rp "+ menu.getHarga() * porsi);
         holder.tvDetailPrice.setText("Jumlah porsi : "+ porsi +"\nHarga per porsi : "+ menu.getHarga());
         holder.tvTime.setText(menu.getKuliner().getJam_buka() +" wib - "+ menu.getKuliner().getJam_tutup() +" wib");
@@ -72,28 +73,31 @@ public class ReRestaurantAdapter extends RecyclerView.Adapter<ReRestaurantAdapte
                 }
             }
         });
+
+        Glide.with(context)
+                .load(menu.getFoto())
+                .into(holder.imgItem);
+
+        Geocoder geocoder = new Geocoder(context, Locale.ENGLISH);
+        try {
+            List<Address> addresses = geocoder.getFromLocation(menu.getKuliner().getPosisi_lat(), menu.getKuliner().getPosisi_lng(), 1);
+
+            if (addresses.size() > 0) {
+                Address fetchedAddress = addresses.get(0);
+                holder.tvAddress.setText(fetchedAddress.getAddressLine(0));
+            } else {
+                holder.tvAddress.setText("-");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e(HOME_FRAG_TAG, e.getMessage());
+            holder.tvAddress.setText("-");
+        }
     }
 
     @Override
     public int getItemCount() {
         return menus.size();
-    }
-
-
-    private String getAddress(LatLng latLng) {
-        Geocoder geocoder = new Geocoder(context, Locale.ENGLISH);
-        try {
-            List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
-
-            if (addresses.size() > 0) {
-                Address fetchedAddress = addresses.get(0);
-                return fetchedAddress.getAddressLine(0);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e(RERESTO_FRAG_TAG, e.getMessage());
-        }
-        return "-";
     }
 
 
