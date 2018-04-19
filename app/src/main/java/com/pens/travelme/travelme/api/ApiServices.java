@@ -3,14 +3,17 @@ package com.pens.travelme.travelme.api;
 import com.pens.travelme.travelme.modal.Kamar;
 import com.pens.travelme.travelme.modal.Kuliner;
 import com.pens.travelme.travelme.modal.Menu;
+import com.pens.travelme.travelme.modal.Packages;
 import com.pens.travelme.travelme.modal.Penginapan;
 import com.pens.travelme.travelme.modal.Wisata;
 
 import java.util.ArrayList;
 
 import retrofit2.Call;
+import retrofit2.CallAdapter;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -36,6 +39,14 @@ public class ApiServices {
             .addConverterFactory(GsonConverterFactory.create()).build().create(ApiServices.DeleteService.class);
 
     public interface PostService {
+        @FormUrlEncoded
+        @POST("package_recomendation")
+        Call<ArrayList<Packages>> package_recomendation(
+                @Field("list_id_wisata") String list_id_wisata,
+                @Field("list_id_kamar") String list_id_kamar,
+                @Field("list_id_menu") String list_id_menu
+        );
+
         @FormUrlEncoded
         @POST("recomendation")
         Call<ArrayList<Wisata>> get_r_wisata(

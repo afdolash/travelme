@@ -1,5 +1,6 @@
 package com.pens.travelme.travelme.frag_lets.recommend;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.pens.travelme.travelme.MainActivity;
 import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.frag_lets.recommend.recommend_hotel.ReHotelFragment;
 import com.pens.travelme.travelme.frag_lets.recommend.recommend_restaurant.ReRestaurantFragment;
@@ -53,6 +55,8 @@ public class RecommendActivity extends AppCompatActivity {
                         break;
                     case RESTAURANT:
                         finish();
+                        Intent intent = new Intent(RecommendActivity.this, MainActivity.class);
+                        startActivity(intent);
                         break;
                 }
             }

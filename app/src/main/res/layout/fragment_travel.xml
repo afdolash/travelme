@@ -5,9 +5,13 @@
     tools:context="com.pens.travelme.travelme.frag_travel.TravelFragment">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rc_mytravel"
-        android:layout_marginTop="8dp"
+        android:id="@+id/rc_travel"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/img_lets"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="29.7dp"/>
 
 </FrameLayout>

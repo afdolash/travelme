@@ -6,14 +6,23 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.common.AccountPicker;
 import com.pens.travelme.travelme.R;
+import com.pens.travelme.travelme.api.ApiServices;
+import com.pens.travelme.travelme.modal.Packages;
+import com.pens.travelme.travelme.modal.Wisata;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -21,8 +30,8 @@ import java.util.List;
  */
 public class TravelFragment extends Fragment {
 
-    private RecyclerView rcMytravel;
-    private List<MyTravel> myTravels = new ArrayList<>();
+    private RecyclerView rcTravel;
+    private Packages packages ;
 
     public TravelFragment() {
         // Required empty public constructor
@@ -35,72 +44,30 @@ public class TravelFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_travel, container, false);
 
-        rcMytravel = (RecyclerView) view.findViewById(R.id.rc_mytravel);
+        rcTravel = (RecyclerView) view.findViewById(R.id.rc_travel);
 
-        RecyclerView.LayoutManager mytravelLayout = new LinearLayoutManager(getContext());
-        rcMytravel.setLayoutManager(mytravelLayout);
-        rcMytravel.setItemAnimator(new DefaultItemAnimator());
-        rcMytravel.setAdapter(new MyTravelAdapter(getContext(), myTravels));
+        RecyclerView.LayoutManager travelLayout = new LinearLayoutManager(getContext());
+        rcTravel.setLayoutManager(travelLayout);
+        rcTravel.setItemAnimator(new DefaultItemAnimator());
+        rcTravel.setFocusable(false);
 
-//        loadMyTravelData();
+        Log.d("TravelFragment","true");
+        ApiServices.service_post.package_recomendation(",5,6,7,8",",7,8,9,10","9,10,11,12").enqueue(new Callback<ArrayList<Packages>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Packages>> call, Response<ArrayList<Packages>> response) {
+                packages = response.body().get(0);
+                Log.d("pcg",packages.toString());
+
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Packages>> call, Throwable t) {
+                Log.e("error",t.getMessage());
+
+            }
+        });
 
         return view;
     }
-
-//    public void loadMyTravelData() {
-//        Travel travel = new Travel(
-//                "Pantai Sanggar",
-//                "Desa Karangasem, Kecamatan Kalidawir, Kabupaten Tulungagung",
-//                "200000",
-//                "08124078773",
-//                R.drawable.travel3
-//        );
-//
-//        List<Restaurant.Food> foods = new ArrayList<>();
-//        Restaurant.Food food = new Restaurant.Food(
-//                "Beef Steak",
-//                "125000",
-//                R.drawable.food
-//        );
-//        foods.add(food);
-//
-//
-//        List<Restaurant.Drink> drinks = new ArrayList<>();
-//        Restaurant.Drink drink = new Restaurant.Drink(
-//                "Sweet Tea",
-//                "25000",
-//                R.drawable.drink
-//        );
-//        drinks.add(drink);
-//
-//
-//        Restaurant restaurant = new Restaurant(
-//                "Jepun View Resto",
-//                "Jl. Mayor Sujadi Jepun, Jepun, Kec. Tulungagung, Kabupaten Tulungagung",
-//                "08124078773",
-//                R.drawable.resto1,
-//                foods,
-//                drinks
-//        );
-//
-//        Hotel hotel = new Hotel(
-//                "Crown Victoria Hotel",
-//                "Jalan Supriadi No.41, Jepun, Kecamatan Tulungagung, Jepun, Kec. Tulungagung, Kabupaten Tulungagung",
-//                "e00000",
-//                "08124078773",
-//                R.drawable.hotel1
-//        );
-//
-//        MyTravel myTravel = new MyTravel(
-//                "Selasa, 10 April 2018",
-//                "My Travelling 1",
-//                travel,
-//                hotel,
-//                restaurant
-//        );
-//        myTravels.add(myTravel);
-//
-//        rcMytravel.getAdapter().notifyDataSetChanged();
-//    }
 
 }

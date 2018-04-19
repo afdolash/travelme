@@ -1,87 +1,107 @@
 package com.pens.travelme.travelme.frag_travel;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.pens.travelme.travelme.R;
+import com.pens.travelme.travelme.modal.MyChoice;
+import com.pens.travelme.travelme.modal.Wisata;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
+import static com.pens.travelme.travelme.frag_home.HomeFragment.HOME_FRAG_TAG;
 
 /**
  * Created by afdol on 4/10/2018.
  */
 
 public class MyTravelAdapter extends RecyclerView.Adapter<MyTravelAdapter.MyViewHolder> {
-
     private Context context;
-    private List<MyTravel> myTravels;
+    private List<Wisata> travels;
 
-    public MyTravelAdapter(Context context, List<MyTravel> myTravels) {
+    public MyTravelAdapter(Context context, List<Wisata> travels) {
         this.context = context;
-        this.myTravels = myTravels;
+        this.travels = travels;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_mytravel, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_travel, parent, false);
         return new MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        MyTravel myTravel = myTravels.get(position);
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
+        final Wisata wisata = travels.get(position);
 
-//        holder.tvDate.setText(myTravel.getDate());
-//        holder.tvTitle.setText(myTravel.getTitle());
-//        holder.tvTitleTravel.setText(myTravel.getTravel().getTitle());
-//        holder.tvAddressTravel.setText(myTravel.getTravel().getAddress());
-//        holder.imgTravel.setImageResource(myTravel.getTravel().getImage());
-//        holder.tvTitleHotel.setText(myTravel.getHotel().getTitle());
-//        holder.tvAddressHotel.setText(myTravel.getHotel().getAddress());
-//        holder.imgHotel.setImageResource(myTravel.getHotel().getImage());
-//        holder.tvTitleRestaurant.setText(myTravel.getRestaurant().getTitle());
-//        holder.tvAddressRestaurant.setText(myTravel.getRestaurant().getAddress());
-//        holder.imgRestaurant.setImageResource(myTravel.getRestaurant().getImage());
+
+        Glide.with(context)
+                .load(wisata.getFoto())
+                .into(holder.imgItem);
+
+        Geocoder geocoder = new Geocoder(context, Locale.ENGLISH);
+        try {
+            List<Address> addresses = geocoder.getFromLocation(wisata.getPosisi_lat(), wisata.getPosisi_lng(), 1);
+
+            if (addresses.size() > 0) {
+                Address fetchedAddress = addresses.get(0);
+                holder.tvAddress.setText(fetchedAddress.getAddressLine(0));
+            } else {
+                holder.tvAddress.setText("-");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e(HOME_FRAG_TAG, e.getMessage());
+            holder.tvAddress.setText("-");
+        }
+
     }
 
     @Override
     public int getItemCount() {
-        return myTravels.size();
+        return travels.size();
     }
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView tvDate, tvTitle;
-        private TextView tvTitleTravel, tvTitleHotel, tvTitleRestaurant;
-        private TextView tvAddressTravel, tvAddressHotel, tvAddressRestaurant;
-        private ImageView imgTravel, imgHotel, imgRestaurant;
-        private CardView cardTravel, cardHotel, cardRestaurant;
+        private CardView cardItem;
+        private ImageView imgItem, imgCall, imgCheck;
+        private TextView tvTitle, tvAddress, tvPrice, tvDetailPrice, tvTime;
+        private LinearLayout lnItem;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            tvDate = (TextView) itemView.findViewById(R.id.tv_date);
+            cardItem = (CardView) itemView.findViewById(R.id.card_item);
+            imgItem = (ImageView) itemView.findViewById(R.id.img_item);
+            imgCall = (ImageView) itemView.findViewById(R.id.img_call);
+            imgCheck = (ImageView) itemView.findViewById(R.id.img_check);
             tvTitle = (TextView) itemView.findViewById(R.id.tv_title);
-            tvTitleTravel = (TextView) itemView.findViewById(R.id.tv_title_travel);
-            tvTitleHotel = (TextView) itemView.findViewById(R.id.tv_title_hotel);
-            tvTitleRestaurant = (TextView) itemView.findViewById(R.id.tv_title_restaurant);
-            tvAddressTravel = (TextView) itemView.findViewById(R.id.tv_address_travel);
-            tvAddressHotel = (TextView) itemView.findViewById(R.id.tv_address_hotel);
-            tvAddressRestaurant = (TextView) itemView.findViewById(R.id.tv_address_restaurant);
-            imgTravel = (ImageView) itemView.findViewById(R.id.img_travel);
-            imgHotel = (ImageView) itemView.findViewById(R.id.img_hotel);
-            imgRestaurant = (ImageView) itemView.findViewById(R.id.img_restaurant);
-            cardTravel = (CardView) itemView.findViewById(R.id.card_travel);
-            cardHotel = (CardView) itemView.findViewById(R.id.card_hotel);
-            cardRestaurant = (CardView) itemView.findViewById(R.id.card_restaurant);
-
+            tvAddress = (TextView) itemView.findViewById(R.id.tv_address);
+            tvPrice = (TextView) itemView.findViewById(R.id.tv_price);
+            tvDetailPrice = (TextView) itemView.findViewById(R.id.tv_detail_price);
+            tvTime = (TextView) itemView.findViewById(R.id.tv_time);
+            lnItem = (LinearLayout) itemView.findViewById(R.id.ln_item);
         }
     }
 }
