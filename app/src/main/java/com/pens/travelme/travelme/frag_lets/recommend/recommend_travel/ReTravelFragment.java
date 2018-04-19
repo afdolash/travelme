@@ -1,7 +1,6 @@
 package com.pens.travelme.travelme.frag_lets.recommend.recommend_travel;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -90,8 +89,9 @@ public class ReTravelFragment extends Fragment {
             @Override
             public void onResponse(Call<ArrayList<Wisata>> call, Response<ArrayList<Wisata>> response) {
                 travels = response.body();
+                Log.d("Travel", String.valueOf(response.body().toString()));
 
-                rcTravel.setAdapter(new ReTravelAdapter(getContext(), travels, myChoice));
+                rcTravel.setAdapter(new com.pens.travelme.travelme.frag_lets.recommend.recommend_travel.ReTravelAdapter(getContext(), travels, myChoice));
                 rcTravel.getAdapter().notifyDataSetChanged();
             }
 

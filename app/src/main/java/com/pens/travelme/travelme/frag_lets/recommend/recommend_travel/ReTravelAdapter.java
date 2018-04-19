@@ -1,18 +1,13 @@
 package com.pens.travelme.travelme.frag_lets.recommend.recommend_travel;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
-import android.net.Uri;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -25,28 +20,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.maps.model.LatLng;
 import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.actv_detail.DetailWisataActivity;
 import com.pens.travelme.travelme.modal.MyChoice;
 import com.pens.travelme.travelme.modal.Wisata;
 
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 import static com.pens.travelme.travelme.actv_detail.DetailWisataActivity.WISATA_ID;
 import static com.pens.travelme.travelme.frag_home.HomeFragment.HOME_FRAG_TAG;
-import static com.pens.travelme.travelme.frag_lets.recommend.recommend_restaurant.ReRestaurantFragment.RERESTO_FRAG_TAG;
-import static com.pens.travelme.travelme.frag_lets.recommend.recommend_travel.ReTravelFragment.RETRAVEL_FRAG_TAG;
 
 /**
  * Created by afdol on 4/10/2018.
  */
 
-public class ReTravelAdapter extends RecyclerView.Adapter<ReTravelAdapter.MyViewHolder> {
+public class ReTravelAdapter extends RecyclerView.Adapter<com.pens.travelme.travelme.frag_lets.recommend.recommend_travel.ReTravelAdapter.MyViewHolder> {
     private Context context;
     private List<Wisata> travels;
     private MyChoice myChoice;
@@ -55,6 +45,11 @@ public class ReTravelAdapter extends RecyclerView.Adapter<ReTravelAdapter.MyView
         this.context = context;
         this.travels = travels;
         this.myChoice = myChoice;
+
+        SharedPreferences sharedPreferences = ((Activity)context).getSharedPreferences("myTravel",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("totalbudget", String.valueOf(myChoice.getBudget()));
+        editor.commit();
     }
 
     @Override

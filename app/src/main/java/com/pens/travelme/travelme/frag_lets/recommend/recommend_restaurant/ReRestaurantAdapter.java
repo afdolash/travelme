@@ -112,7 +112,8 @@ public class ReRestaurantAdapter extends RecyclerView.Adapter<ReRestaurantAdapte
                         editor.commit();
                     }
                 }
-
+                editor.putString("sisabudget", String.valueOf(myChoice.getBudget()));
+                editor.commit();
                 Log.d("selectedMenu",sharedPreferences.getString("id_menu",""));
                 Log.d("budget", String.valueOf(myChoice.getBudget()));
 

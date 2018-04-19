@@ -1,11 +1,6 @@
 package com.pens.travelme.travelme.frag_travel;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v7.widget.CardView;
@@ -17,11 +12,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.pens.travelme.travelme.R;
-import com.pens.travelme.travelme.modal.MyChoice;
+import com.pens.travelme.travelme.modal.Menu;
 import com.pens.travelme.travelme.modal.Wisata;
 
 import java.io.IOException;
@@ -34,11 +28,11 @@ import static com.pens.travelme.travelme.frag_home.HomeFragment.HOME_FRAG_TAG;
  * Created by afdol on 4/10/2018.
  */
 
-public class MyTravelAdapter extends RecyclerView.Adapter<MyTravelAdapter.MyViewHolder> {
+public class MyTravelMenuAdapter extends RecyclerView.Adapter<MyTravelMenuAdapter.MyViewHolder> {
     private Context context;
-    private List<Wisata> travels;
+    private List<Menu> travels;
 
-    public MyTravelAdapter(Context context, List<Wisata> travels) {
+    public MyTravelMenuAdapter(Context context, List<Menu> travels) {
         this.context = context;
         this.travels = travels;
     }
@@ -51,7 +45,12 @@ public class MyTravelAdapter extends RecyclerView.Adapter<MyTravelAdapter.MyView
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        final Wisata wisata = travels.get(position);
+        final Menu wisata = travels.get(position);
+
+        holder.tvTitle.setText(wisata.getNama());
+        holder.tvTime.setVisibility(View.GONE);
+        holder.imgCall.setVisibility(View.GONE);
+        holder.lnHarga.setVisibility(View.GONE);
 
 
         Glide.with(context)
@@ -60,7 +59,7 @@ public class MyTravelAdapter extends RecyclerView.Adapter<MyTravelAdapter.MyView
 
         Geocoder geocoder = new Geocoder(context, Locale.ENGLISH);
         try {
-            List<Address> addresses = geocoder.getFromLocation(wisata.getPosisi_lat(), wisata.getPosisi_lng(), 1);
+            List<Address> addresses = geocoder.getFromLocation(wisata.getKuliner().getPosisi_lat(), wisata.getKuliner().getPosisi_lng(), 1);
 
             if (addresses.size() > 0) {
                 Address fetchedAddress = addresses.get(0);
@@ -73,7 +72,6 @@ public class MyTravelAdapter extends RecyclerView.Adapter<MyTravelAdapter.MyView
             Log.e(HOME_FRAG_TAG, e.getMessage());
             holder.tvAddress.setText("-");
         }
-
     }
 
     @Override
@@ -87,12 +85,13 @@ public class MyTravelAdapter extends RecyclerView.Adapter<MyTravelAdapter.MyView
         private CardView cardItem;
         private ImageView imgItem, imgCall, imgCheck;
         private TextView tvTitle, tvAddress, tvPrice, tvDetailPrice, tvTime;
-        private LinearLayout lnItem;
+        private LinearLayout lnItem, lnHarga;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
             cardItem = (CardView) itemView.findViewById(R.id.card_item);
+            lnHarga = (LinearLayout) itemView.findViewById(R.id.ln_harga);
             imgItem = (ImageView) itemView.findViewById(R.id.img_item);
             imgCall = (ImageView) itemView.findViewById(R.id.img_call);
             imgCheck = (ImageView) itemView.findViewById(R.id.img_check);
