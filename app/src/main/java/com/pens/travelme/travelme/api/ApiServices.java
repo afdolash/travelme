@@ -43,6 +43,9 @@ public class ApiServices {
                 @Field("wisata_jenis") String wisata_jenis,
                 @Field("wisata_jumlah_anak") int wisata_jumlah_anak,
                 @Field("wisata_jumlah_dewasa") int wisata_jumlah_dewasa,
+                @Field("jumlah_motor") int jumlah_motor,
+                @Field("jumlah_mobil") int jumlah_mobil,
+                @Field("jumlah_bus") int jumlah_bus,
                 @Field("budget_wisata") Double budget_wisata
         );
 

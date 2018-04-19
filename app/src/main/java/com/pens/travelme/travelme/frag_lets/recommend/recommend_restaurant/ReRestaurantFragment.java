@@ -76,7 +76,7 @@ public class ReRestaurantFragment extends Fragment {
             public void onResponse(Call<ArrayList<Menu>> call, Response<ArrayList<Menu>> response) {
                 menus = response.body();
 
-                rcRestaurant.setAdapter(new ReRestaurantAdapter(getContext(), menus, myChoice.getJumPorsi()));
+                rcRestaurant.setAdapter(new ReRestaurantAdapter(getContext(), menus, myChoice));
                 rcRestaurant.getAdapter().notifyDataSetChanged();
             }
 

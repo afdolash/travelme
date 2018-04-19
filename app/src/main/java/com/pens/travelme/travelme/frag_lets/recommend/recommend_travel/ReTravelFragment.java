@@ -1,6 +1,9 @@
 package com.pens.travelme.travelme.frag_lets.recommend.recommend_travel;
 
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -45,6 +48,13 @@ public class ReTravelFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_re_travel, container, false);
 
+
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("myTravel", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.commit();
+
         rcTravel = (RecyclerView) view.findViewById(R.id.rc_travel);
 
         RecyclerView.LayoutManager travelLayout = new LinearLayoutManager(getContext());
@@ -72,13 +82,16 @@ public class ReTravelFragment extends Fragment {
                 myChoice.getCategoryWisata().toString(),
                 myChoice.getTicketChild(),
                 myChoice.getTicketAdult(),
+                myChoice.getTicketMotor(),
+                myChoice.getTicketCar(),
+                myChoice.getTicketBus(),
                 myChoice.getBudget()
         ).enqueue(new Callback<ArrayList<Wisata>>() {
             @Override
             public void onResponse(Call<ArrayList<Wisata>> call, Response<ArrayList<Wisata>> response) {
                 travels = response.body();
 
-                rcTravel.setAdapter(new ReTravelAdapter(getContext(), travels, myChoice.getTicketMotor(), myChoice.getTicketCar(), myChoice.getTicketBus(), myChoice.getTicketAdult(), myChoice.getTicketChild()));
+                rcTravel.setAdapter(new ReTravelAdapter(getContext(), travels, myChoice));
                 rcTravel.getAdapter().notifyDataSetChanged();
             }
 

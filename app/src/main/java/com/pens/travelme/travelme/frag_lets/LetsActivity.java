@@ -1,6 +1,8 @@
 package com.pens.travelme.travelme.frag_lets;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -41,6 +43,7 @@ public class LetsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lets);
+
 
         etBudget = (EditText) findViewById(R.id.et_budget);
 

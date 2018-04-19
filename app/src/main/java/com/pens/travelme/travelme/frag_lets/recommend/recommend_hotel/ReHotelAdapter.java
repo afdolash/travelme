@@ -1,9 +1,13 @@
 package com.pens.travelme.travelme.frag_lets.recommend.recommend_hotel;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
@@ -22,6 +26,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.model.LatLng;
 import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.modal.Kamar;
+import com.pens.travelme.travelme.modal.MyChoice;
 
 import java.io.IOException;
 import java.util.List;
@@ -38,12 +43,12 @@ public class ReHotelAdapter extends RecyclerView.Adapter<ReHotelAdapter.MyViewHo
 
     private Context context;
     private List<Kamar> hotels;
-    private int room;
+    private MyChoice myChoice;
 
-    public ReHotelAdapter(Context context, List<Kamar> hotels, int room) {
+    public ReHotelAdapter(Context context, List<Kamar> hotels, MyChoice myChoice) {
         this.context = context;
         this.hotels = hotels;
-        this.room = room;
+        this.myChoice = myChoice;
     }
 
     @Override
@@ -53,17 +58,56 @@ public class ReHotelAdapter extends RecyclerView.Adapter<ReHotelAdapter.MyViewHo
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
         final Kamar kamar = hotels.get(position);
+        final Double totalHarga = kamar.getHarga() * myChoice.getJumKamar();
 
         holder.tvTitle.setText(kamar.getNama());
-        holder.tvPrice.setText("Rp "+ kamar.getHarga() * room);
-        holder.tvDetailPrice.setText("Jumlah kamar : "+ room +"\nHarga kamar : "+ kamar.getHarga());
+        holder.tvPrice.setText("Rp "+totalHarga);
+        holder.tvDetailPrice.setText("Jumlah kamar : "+ myChoice.getJumKamar() +"\nHarga kamar : "+ kamar.getHarga());
         holder.tvTime.setVisibility(View.GONE);
+
+        holder.imgCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                SharedPreferences sharedPreferences = ((Activity)context).getSharedPreferences("myTravel",Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+                if(sharedPreferences.getString("id_kamar","").contains(","+String.valueOf(kamar.getId_kamar()))){
+                    holder.imgCheck.setImageTintList(ColorStateList.valueOf(Color.parseColor("#D5D5D5")));
+                    myChoice.setBudget(myChoice.getBudget()+totalHarga);
+
+                    String add_kamar = sharedPreferences.getString("id_kamar","");
+                    add_kamar = add_kamar.replace(","+String.valueOf(kamar.getId_kamar()),"");
+                    editor.putString("id_kamar", String.valueOf(add_kamar));
+                    editor.commit();
+                }
+                else {
+                    if (totalHarga>myChoice.getBudget()){
+                        Toast.makeText(context, "Budget anda tidak cukup", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        holder.imgCheck.setImageTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
+
+                        myChoice.setBudget(myChoice.getBudget()-totalHarga);
+
+                        String add_kamar = sharedPreferences.getString("id_kamar","")+","+kamar.getId_kamar();
+                        editor.putString("id_kamar", String.valueOf(add_kamar));
+                        editor.commit();
+                    }
+                }
+
+                Log.d("selectedKamar",sharedPreferences.getString("id_kamar",""));
+                Log.d("budget", String.valueOf(myChoice.getBudget()));
+            }
+        });
 
         holder.imgCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + kamar.getPenginapan().getNo_telp()));
                 if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
                     context.startActivity(intent);
