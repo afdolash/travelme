@@ -35,6 +35,26 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Transparent" />
+        <activity
+            android:name=".actv_detail.DetailWisataActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".actv_detail.DetailKamarActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".actv_detail.DetailPenginapanActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".actv_detail.DetailKulinerActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

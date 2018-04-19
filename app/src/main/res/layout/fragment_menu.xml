@@ -1,0 +1,14 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.pens.travelme.travelme.actv_detail.sub_frag_kuliner.MenuFragment">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rc_kamar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:padding="6dp"/>
+
+</FrameLayout>
