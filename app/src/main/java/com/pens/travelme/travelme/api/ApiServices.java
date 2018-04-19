@@ -40,20 +40,20 @@ public class ApiServices {
 
     public interface PostService {
         @FormUrlEncoded
-        @POST("package_recomendation_wisata")
+        @POST("package_recomendation")
         Call<ArrayList<Wisata>> package_recomendation_wisata(
                 @Field("list_id_wisata") String list_id_wisata,
                 @Field("jenis_layanan") String jenis_layanan
         );
 
         @FormUrlEncoded
-        @POST("package_recomendation_kamar")
+        @POST("package_recomendation")
         Call<ArrayList<Kamar>> package_recomendation_kamar(
                 @Field("list_id_kamar") String list_id_kamar,
                 @Field("jenis_layanan") String jenis_layanan
         );
         @FormUrlEncoded
-        @POST("package_recomendation_menu")
+        @POST("package_recomendation")
         Call<ArrayList<Menu>> package_recomendation_menu(
                 @Field("list_id_menu") String list_id_menu,
                 @Field("jenis_layanan") String jenis_layanan

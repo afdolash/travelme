@@ -30,7 +30,7 @@ public class RecommendActivity extends AppCompatActivity {
         return myChoice;
     }
 
-    private MyChoice myChoice = new MyChoice();
+    public static MyChoice myChoice = new MyChoice();
     private RelativeLayout rvNext;
 
     @Override

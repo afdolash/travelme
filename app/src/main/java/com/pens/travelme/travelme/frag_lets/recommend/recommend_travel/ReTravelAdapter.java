@@ -43,6 +43,11 @@ public class ReTravelAdapter extends RecyclerView.Adapter<com.pens.travelme.trav
         this.context = context;
         this.travels = travels;
         this.myChoice = myChoice;
+
+        SharedPreferences sharedPreferences = ((Activity)context).getSharedPreferences("myTravel",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("totalbudget", String.valueOf(myChoice.getBudget()));
+        editor.commit();
     }
 
     @Override
