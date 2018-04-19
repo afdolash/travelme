@@ -3,6 +3,7 @@ package com.pens.travelme.travelme.frag_lets.recommend.recommend_travel;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;

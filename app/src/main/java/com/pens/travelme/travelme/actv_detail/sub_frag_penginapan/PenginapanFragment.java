@@ -52,6 +52,7 @@ public class PenginapanFragment extends Fragment {
         tvAddress = (TextView) view.findViewById(R.id.tv_address);
         tvDescription = (TextView) view.findViewById(R.id.tv_description);
         tvFacilities = (TextView) view.findViewById(R.id.tv_facilities);
+        tvPhone = (TextView) view.findViewById(R.id.tv_phone);
 
         penginapan = ((DetailPenginapanActivity) getActivity()).getPenginapan();
 
@@ -74,6 +75,7 @@ public class PenginapanFragment extends Fragment {
         tvTitle.setText(penginapan.getNama());
         tvDescription.setText(penginapan.getDeskripsi());
         tvFacilities.setText(penginapan.getFasilitas());
+        tvPhone.setText(penginapan.getNo_telp());
 
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override

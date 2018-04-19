@@ -59,6 +59,7 @@ public class KulinerFragment extends Fragment {
         tvTicketCar = (TextView) view.findViewById(R.id.tv_price_car);
         tvTicketBus = (TextView) view.findViewById(R.id.tv_price_bus);
         tvFacilities = (TextView) view.findViewById(R.id.tv_facilities);
+        tvPhone = (TextView) view.findViewById(R.id.tv_phone);
 
         kuliner = ((DetailKulinerActivity) getActivity()).getKuliner();
 
@@ -86,6 +87,7 @@ public class KulinerFragment extends Fragment {
         tvTicketCar.setText("Rp "+ kuliner.getHarga_tiket_parkir_mobil());
         tvTicketBus.setText("Rp "+ kuliner.getHarga_tiket_parkir_bus());
         tvFacilities.setText(kuliner.getFasilitas());
+        tvPhone.setText(kuliner.getNo_telp());
 
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
