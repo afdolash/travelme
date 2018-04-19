@@ -25,6 +25,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.model.LatLng;
 import com.pens.travelme.travelme.R;
+import com.pens.travelme.travelme.actv_detail.DetailKamarActivity;
+import com.pens.travelme.travelme.actv_detail.DetailPenginapanActivity;
 import com.pens.travelme.travelme.modal.Kamar;
 import com.pens.travelme.travelme.modal.MyChoice;
 
@@ -32,6 +34,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import static com.pens.travelme.travelme.actv_detail.DetailKamarActivity.KAMAR_ID;
 import static com.pens.travelme.travelme.frag_home.HomeFragment.HOME_FRAG_TAG;
 import static com.pens.travelme.travelme.frag_lets.recommend.recommend_hotel.ReHotelFragment.REHOTEL_FRAG_TAG;
 
@@ -66,6 +69,15 @@ public class ReHotelAdapter extends RecyclerView.Adapter<ReHotelAdapter.MyViewHo
         holder.tvPrice.setText("Rp "+totalHarga);
         holder.tvDetailPrice.setText("Jumlah kamar : "+ myChoice.getJumKamar() +"\nHarga kamar : "+ kamar.getHarga());
         holder.tvTime.setVisibility(View.GONE);
+
+        holder.cardItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailKamarActivity.class);
+                intent.putExtra(KAMAR_ID, kamar.getId_kamar());
+                context.startActivity(intent);
+            }
+        });
 
         holder.imgCheck.setOnClickListener(new View.OnClickListener() {
             @Override

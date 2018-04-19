@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.model.LatLng;
 import com.pens.travelme.travelme.R;
+import com.pens.travelme.travelme.actv_detail.DetailWisataActivity;
 import com.pens.travelme.travelme.modal.MyChoice;
 import com.pens.travelme.travelme.modal.Wisata;
 
@@ -36,6 +37,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import static com.pens.travelme.travelme.actv_detail.DetailWisataActivity.WISATA_ID;
 import static com.pens.travelme.travelme.frag_home.HomeFragment.HOME_FRAG_TAG;
 import static com.pens.travelme.travelme.frag_lets.recommend.recommend_restaurant.ReRestaurantFragment.RERESTO_FRAG_TAG;
 import static com.pens.travelme.travelme.frag_lets.recommend.recommend_travel.ReTravelFragment.RETRAVEL_FRAG_TAG;
@@ -83,6 +85,15 @@ public class ReTravelAdapter extends RecyclerView.Adapter<ReTravelAdapter.MyView
         holder.tvDetailPrice.setText(detailPrice);
         holder.tvTime.setText(wisata.getJam_buka() +" wib - "+ wisata.getJam_tutup() +" wib");
         holder.imgCall.setVisibility(View.GONE);
+
+        holder.cardItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailWisataActivity.class);
+                intent.putExtra(WISATA_ID, wisata.getId_wisata());
+                context.startActivity(intent);
+            }
+        });
 
 
         Glide.with(context)

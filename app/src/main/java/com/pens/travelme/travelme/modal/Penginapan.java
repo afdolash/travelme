@@ -1,5 +1,7 @@
 package com.pens.travelme.travelme.modal;
 
+import java.util.List;
+
 public class Penginapan {
     private int id_penginapan;
     private int id_admin;
@@ -11,6 +13,7 @@ public class Penginapan {
     private String foto;
     private String deskripsi;
     private String fasilitas;
+    private List<Kamar> kamar;
 
     public Penginapan() {
     }
@@ -26,6 +29,10 @@ public class Penginapan {
         this.foto = foto;
         this.deskripsi = deskripsi;
         this.fasilitas = fasilitas;
+    }
+
+    public List<Kamar> getKamar() {
+        return kamar;
     }
 
     public int getId_penginapan() {

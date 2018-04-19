@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.model.LatLng;
 import com.pens.travelme.travelme.R;
+import com.pens.travelme.travelme.actv_detail.DetailKulinerActivity;
 import com.pens.travelme.travelme.modal.Menu;
 import com.pens.travelme.travelme.modal.MyChoice;
 
@@ -32,6 +33,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import static com.pens.travelme.travelme.actv_detail.DetailKulinerActivity.KULINER_ID;
 import static com.pens.travelme.travelme.frag_home.HomeFragment.HOME_FRAG_TAG;
 import static com.pens.travelme.travelme.frag_lets.recommend.recommend_restaurant.ReRestaurantFragment.RERESTO_FRAG_TAG;
 
@@ -69,6 +71,15 @@ public class ReRestaurantAdapter extends RecyclerView.Adapter<ReRestaurantAdapte
         holder.tvPrice.setText("Rp "+ totalHarga);
         holder.tvDetailPrice.setText("Jumlah porsi : "+ myChoice.getJumPorsi() +"\nHarga per porsi : "+ menu.getHarga());
         holder.tvTime.setText(menu.getKuliner().getJam_buka() +" wib - "+ menu.getKuliner().getJam_tutup() +" wib");
+
+        holder.cardItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailKulinerActivity.class);
+                intent.putExtra(KULINER_ID, menu.getId_kuliner());
+                context.startActivity(intent);
+            }
+        });
 
         holder.imgCheck.setOnClickListener(new View.OnClickListener() {
             @Override

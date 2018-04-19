@@ -77,6 +77,22 @@ public class ApiServices {
         @FormUrlEncoded
         @POST("all_penginapan")
         Call<ArrayList<Penginapan>> get_all_penginapan(@Field("id") int id);
+
+        @FormUrlEncoded
+        @POST("detail_wisata")
+        Call<Wisata> get_detail_wisata(@Field("id_wisata") int id_wisata);
+
+        @FormUrlEncoded
+        @POST("detail_kuliner")
+        Call<Kuliner> get_detail_kuliner(@Field("id_kuliner") int id_kuliner);
+
+        @FormUrlEncoded
+        @POST("detail_penginapan")
+        Call<Penginapan> get_detail_penginapan(@Field("id_penginapan") int id_penginapan);
+
+        @FormUrlEncoded
+        @POST("detail_kamar")
+        Call<Kamar> get_detail_kamar(@Field("id_kamar") int id_kamar);
     }
 
     public interface GetService {

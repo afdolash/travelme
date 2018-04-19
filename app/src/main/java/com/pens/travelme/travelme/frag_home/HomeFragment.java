@@ -14,7 +14,6 @@ import android.widget.EditText;
 
 import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.api.ApiServices;
-import com.pens.travelme.travelme.frag_lets.WisataAdapter;
 import com.pens.travelme.travelme.modal.Kuliner;
 import com.pens.travelme.travelme.modal.Penginapan;
 import com.pens.travelme.travelme.modal.Wisata;
