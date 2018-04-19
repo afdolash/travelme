@@ -1,6 +1,9 @@
 package com.pens.travelme.travelme.frag_travel;
 
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -43,8 +46,10 @@ public class TravelFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_travel, container, false);
-
         rcTravel = (RecyclerView) view.findViewById(R.id.rc_travel);
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("myTravel", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         RecyclerView.LayoutManager travelLayout = new LinearLayoutManager(getContext());
         rcTravel.setLayoutManager(travelLayout);
@@ -52,21 +57,9 @@ public class TravelFragment extends Fragment {
         rcTravel.setFocusable(false);
 
         Log.d("TravelFragment","true");
-        ApiServices.service_post.package_recomendation(",5,6,7,8",",7,8,9,10","9,10,11,12").enqueue(new Callback<ArrayList<Packages>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Packages>> call, Response<ArrayList<Packages>> response) {
-                packages = response.body().get(0);
-                Log.d("pcg",packages.toString());
-
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Packages>> call, Throwable t) {
-                Log.e("error",t.getMessage());
-
-            }
-        });
-
+        Log.d("selectedWisata",sharedPreferences.getString("id_wisata",""));
+        Log.d("selectedKamar",sharedPreferences.getString("id_kamar",""));
+        Log.d("selectedMenu",sharedPreferences.getString("id_menu",""));
         return view;
     }
 
