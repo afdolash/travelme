@@ -91,10 +91,13 @@ public class TravelFragment extends Fragment {
 
                 rcTravel.setAdapter(new MyTravelWisataAdapter(getContext(), travels));
                 rcTravel.getAdapter().notifyDataSetChanged();
+
+                Log.d("success",response.body().toString());
             }
 
             @Override
             public void onFailure(Call<ArrayList<Wisata>> call, Throwable t) {
+                Log.d("error",t.getMessage());
 
             }
         });
