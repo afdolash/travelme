@@ -55,8 +55,6 @@ public class RecommendActivity extends AppCompatActivity {
                         break;
                     case RESTAURANT:
                         finish();
-                        Intent intent = new Intent(RecommendActivity.this, MainActivity.class);
-                        startActivity(intent);
                         break;
                 }
             }
