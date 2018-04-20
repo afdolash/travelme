@@ -2,10 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context="com.pens.travelme.travelme.actv_detail.sub_frag_kuliner.MenuFragment">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rc_kamar"
+        android:id="@+id/rc_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"

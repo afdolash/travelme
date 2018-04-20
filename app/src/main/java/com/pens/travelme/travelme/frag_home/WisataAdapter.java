@@ -1,6 +1,7 @@
-package com.pens.travelme.travelme.frag_lets;
+package com.pens.travelme.travelme.frag_home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v7.widget.CardView;
@@ -14,12 +15,14 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.pens.travelme.travelme.R;
+import com.pens.travelme.travelme.actv_detail.DetailWisataActivity;
 import com.pens.travelme.travelme.modal.Wisata;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import static com.pens.travelme.travelme.actv_detail.DetailWisataActivity.WISATA_ID;
 import static com.pens.travelme.travelme.frag_home.HomeFragment.HOME_FRAG_TAG;
 
 /**
@@ -43,7 +46,7 @@ public class WisataAdapter extends RecyclerView.Adapter<WisataAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Wisata wisata = travels.get(position);
+        final Wisata wisata = travels.get(position);
 
         holder.tvTitle.setText(wisata.getNama());
 
@@ -66,6 +69,15 @@ public class WisataAdapter extends RecyclerView.Adapter<WisataAdapter.MyViewHold
             Log.e(HOME_FRAG_TAG, e.getMessage());
             holder.tvAddress.setText("-");
         }
+
+        holder.cardItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailWisataActivity.class);
+                intent.putExtra(WISATA_ID, wisata.getId_wisata());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

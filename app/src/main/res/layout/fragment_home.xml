@@ -68,7 +68,7 @@
             android:paddingLeft="20dp"
             android:paddingRight="8dp"
             android:layout_marginBottom="18dp"
-            android:clipToPadding="false" />
+            android:clipToPadding="false"/>
 
         <TextView
             android:layout_width="wrap_content"

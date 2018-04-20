@@ -15,12 +15,14 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/img_item"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
                 android:src="@drawable/ic_launcher_background"
                 android:scaleType="centerCrop"/>
 
             <TextView
+                android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -32,6 +34,7 @@
                 android:fontFamily="@font/segoe"/>
 
             <TextView
+                android:id="@+id/tv_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"

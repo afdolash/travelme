@@ -2,64 +2,56 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:nestedScrollingEnabled="true"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/colorWhite"
+    android:nestedScrollingEnabled="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/card_description"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            app:cardCornerRadius="0dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:paddingRight="16dp"
+            android:paddingLeft="16dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:paddingRight="16dp"
-                android:paddingLeft="16dp">
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GDG Surabaya"
+                android:textSize="18sp"
+                android:textColor="@color/colorBlackLa"
+                android:fontFamily="@font/segoe"/>
 
-                <TextView
-                    android:id="@+id/tv_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="GDG Surabaya"
-                    android:textSize="18sp"
-                    android:textColor="@color/colorBlackLa"
-                    android:fontFamily="@font/segoe"/>
+            <TextView
+                android:id="@+id/tv_hotel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/segoe"
+                android:text="Hotel Grand City Surabaya"
+                android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/tv_hotel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Hotel Grand City Surabaya"
-                    android:textSize="12sp"
-                    android:fontFamily="@font/segoe"
-                    android:layout_marginTop="8dp"/>
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Grand City Surabaya"
+                android:textSize="12sp"
+                android:fontFamily="@font/segoe"/>
 
-                <TextView
-                    android:id="@+id/tv_location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Grand City Surabaya"
-                    android:textSize="12sp"
-                    android:fontFamily="@font/segoe"/>
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Harga Kamar"
+            android:textColor="@color/colorBlackLa"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
@@ -94,6 +86,7 @@
                         android:fontFamily="@font/segoe"/>
 
                     <TextView
+                        android:id="@+id/tv_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="120.000"
@@ -119,6 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kapasitas"
+            android:textColor="@color/colorBlackLa"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
@@ -146,6 +140,7 @@
                     android:gravity="center">
 
                     <TextView
+                        android:id="@+id/tv_capacity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2"
@@ -174,6 +169,7 @@
                     android:gravity="center">
 
                     <TextView
+                        android:id="@+id/tv_rooms"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2"
@@ -197,6 +193,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Fasilitas"
+            android:textColor="@color/colorBlackLa"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
@@ -205,25 +202,26 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp">
+            android:layout_marginTop="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="16dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/tv_facilities"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Kamar mandi, AC, Pelayaan kamar"
-                    android:textSize="14sp"
+                    android:fontFamily="@font/segoe"
                     android:gravity="center"
-                    android:fontFamily="@font/segoe"/>
+                    android:text="Kamar mandi, AC, Pelayaan kamar"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 

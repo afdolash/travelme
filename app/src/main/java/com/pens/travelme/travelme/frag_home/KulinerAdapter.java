@@ -1,6 +1,7 @@
 package com.pens.travelme.travelme.frag_home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v7.widget.CardView;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.model.LatLng;
 import com.pens.travelme.travelme.R;
+import com.pens.travelme.travelme.actv_detail.DetailKulinerActivity;
+import com.pens.travelme.travelme.actv_detail.DetailWisataActivity;
 import com.pens.travelme.travelme.modal.Kuliner;
 import com.pens.travelme.travelme.modal.Menu;
 
@@ -23,6 +26,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import static com.pens.travelme.travelme.actv_detail.DetailKulinerActivity.KULINER_ID;
+import static com.pens.travelme.travelme.actv_detail.DetailWisataActivity.WISATA_ID;
 import static com.pens.travelme.travelme.frag_home.HomeFragment.HOME_FRAG_TAG;
 
 /**
@@ -47,7 +52,7 @@ public class KulinerAdapter extends RecyclerView.Adapter<KulinerAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(KulinerAdapter.MyViewHolder holder, int position) {
-        Kuliner kuliner = restaurants.get(position);
+        final Kuliner kuliner = restaurants.get(position);
 
         holder.tvTitle.setText(kuliner.getNama());
 
@@ -70,6 +75,15 @@ public class KulinerAdapter extends RecyclerView.Adapter<KulinerAdapter.MyViewHo
             Log.e(HOME_FRAG_TAG, e.getMessage());
             holder.tvAddress.setText("-");
         }
+
+        holder.cardItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailKulinerActivity.class);
+                intent.putExtra(KULINER_ID, kuliner.getId_kuliner());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

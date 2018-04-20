@@ -1,6 +1,7 @@
 package com.pens.travelme.travelme.frag_home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v7.widget.CardView;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.model.LatLng;
 import com.pens.travelme.travelme.R;
+import com.pens.travelme.travelme.actv_detail.DetailKulinerActivity;
+import com.pens.travelme.travelme.actv_detail.DetailPenginapanActivity;
 import com.pens.travelme.travelme.modal.Kamar;
 import com.pens.travelme.travelme.modal.Penginapan;
 
@@ -23,6 +26,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import static com.pens.travelme.travelme.actv_detail.DetailKulinerActivity.KULINER_ID;
+import static com.pens.travelme.travelme.actv_detail.DetailPenginapanActivity.PENGINAPAN_ID;
 import static com.pens.travelme.travelme.frag_home.HomeFragment.HOME_FRAG_TAG;
 
 /**
@@ -47,7 +52,7 @@ public class PenginapanAdapter extends RecyclerView.Adapter<PenginapanAdapter.My
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Penginapan penginapan = hotels.get(position);
+        final Penginapan penginapan = hotels.get(position);
 
         holder.tvTitle.setText(penginapan.getNama());
 
@@ -71,6 +76,15 @@ public class PenginapanAdapter extends RecyclerView.Adapter<PenginapanAdapter.My
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
             holder.tvAddress.setText("-");
         }
+
+        holder.cardItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailPenginapanActivity.class);
+                intent.putExtra(PENGINAPAN_ID, penginapan.getId_penginapan());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

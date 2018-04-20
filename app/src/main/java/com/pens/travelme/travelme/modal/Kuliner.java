@@ -1,5 +1,7 @@
 package com.pens.travelme.travelme.modal;
 
+import java.util.List;
+
 public class Kuliner {
     private int id_kuliner;
     private int id_admin;
@@ -16,6 +18,7 @@ public class Kuliner {
     private String fasilitas;
     private String jam_buka;
     private String jam_tutup;
+    private List<Menu> menu;
 
     public Kuliner() {
     }
@@ -36,6 +39,10 @@ public class Kuliner {
         this.fasilitas = fasilitas;
         this.jam_buka = jam_buka;
         this.jam_tutup = jam_tutup;
+    }
+
+    public List<Menu> getMenu() {
+        return menu;
     }
 
     public int getId_kuliner() {

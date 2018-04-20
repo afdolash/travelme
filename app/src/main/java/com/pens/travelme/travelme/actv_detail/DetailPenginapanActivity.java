@@ -8,16 +8,31 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.actv_detail.sub_frag_penginapan.KamarFragment;
 import com.pens.travelme.travelme.actv_detail.sub_frag_penginapan.PenginapanFragment;
+import com.pens.travelme.travelme.api.ApiServices;
+import com.pens.travelme.travelme.modal.Kuliner;
+import com.pens.travelme.travelme.modal.Penginapan;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailPenginapanActivity extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+public class DetailPenginapanActivity extends AppCompatActivity {
+    public static final String PENGINAPAN_ID = "penginapan_id";
+
+    private int penginapanId;
+    private Penginapan penginapan;
+
+    private ImageView imgDetail;
     private ViewPager viewPager;
     private TabLayout tabLayout;
 
@@ -26,16 +41,18 @@ public class DetailPenginapanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_penginapan);
 
+        penginapanId = getIntent().getIntExtra(PENGINAPAN_ID, 0);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
 
+        imgDetail = (ImageView) findViewById(R.id.img_detail);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
 
-        setupViewPager(viewPager);
-        tabLayout.setupWithViewPager(viewPager);
+        loadPenginapanData();
     }
 
     @Override
@@ -49,6 +66,36 @@ public class DetailPenginapanActivity extends AppCompatActivity {
         adapter.addFragment(new PenginapanFragment(), "Deskripsi");
         adapter.addFragment(new KamarFragment(), "Kamar");
         viewPager.setAdapter(adapter);
+    }
+
+    public void loadPenginapanData() {
+        ApiServices.service_post.get_detail_penginapan(penginapanId).enqueue(new Callback<Penginapan>() {
+            @Override
+            public void onResponse(Call<Penginapan> call, Response<Penginapan> response) {
+                penginapan = response.body();
+
+                Glide.with(DetailPenginapanActivity.this)
+                        .load(penginapan.getFoto())
+                        .into(imgDetail);
+
+                setPenginapan(penginapan);
+                setupViewPager(viewPager);
+                tabLayout.setupWithViewPager(viewPager);
+            }
+
+            @Override
+            public void onFailure(Call<Penginapan> call, Throwable t) {
+                Log.d("DetailPenginapanActiv", t.getMessage());
+            }
+        });
+    }
+
+    public Penginapan getPenginapan() {
+        return penginapan;
+    }
+
+    public void setPenginapan(Penginapan penginapan) {
+        this.penginapan = penginapan;
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
