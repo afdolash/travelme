@@ -317,6 +317,7 @@ public class LetsActivity extends AppCompatActivity {
                     Intent intent = new Intent(LetsActivity.this, RecommendActivity.class);
                     intent.putExtra(MYCHOICE, myChoice);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

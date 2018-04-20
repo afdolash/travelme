@@ -39,14 +39,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, LetsActivity.class);
                     startActivity(intent);
                     return true;
-                case R.id.nav_history:
-                    fragment = new HistoryFragment();
-                    loadFragment(fragment);
-                    return true;
-                case R.id.nav_account:
-                    fragment = new AccountFragment();
-                    loadFragment(fragment);
-                    return true;
             }
             return true;
         }
