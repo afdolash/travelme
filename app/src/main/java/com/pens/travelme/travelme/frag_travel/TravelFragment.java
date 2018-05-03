@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.gms.common.AccountPicker;
 import com.pens.travelme.travelme.R;
@@ -40,6 +41,7 @@ public class TravelFragment extends Fragment {
     private List<Wisata> travels = new ArrayList<>();
     private List<Kamar> hotels = new ArrayList<>();
     private List<Menu> menus = new ArrayList<>();
+    private TextView tvMyBudget, tvTotalBudget;
 
     public TravelFragment() {
         // Required empty public constructor
@@ -73,8 +75,14 @@ public class TravelFragment extends Fragment {
         rcRestaurant.setItemAnimator(new DefaultItemAnimator());
         rcRestaurant.setFocusable(false);
 
+        tvMyBudget = (TextView) view.findViewById(R.id.tv_my_budget);
+        tvMyBudget.setText("Rp "+ sharedPreferences.getString("sisabudget",""));
+
+        tvTotalBudget = (TextView) view.findViewById(R.id.tv_total_budget);
+        tvTotalBudget.setText("Rp "+ sharedPreferences.getString("totalbudget",""));
+
         String id_wisata = sharedPreferences.getString("id_wisata","");
-        String id_kamar =sharedPreferences.getString("id_kamar","");
+        String id_kamar = sharedPreferences.getString("id_kamar","");
         String id_menu = sharedPreferences.getString("id_menu","");
 
         Log.d("TravelFragment","true");

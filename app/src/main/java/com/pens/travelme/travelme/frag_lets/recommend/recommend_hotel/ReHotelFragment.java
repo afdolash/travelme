@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.api.ApiServices;
@@ -64,6 +66,8 @@ public class ReHotelFragment extends Fragment {
 
     public void loadHotelData() {
         final MyChoice myChoice = ((RecommendActivity) getActivity()).getMyChoice();
+        final TextView tvMyBudget = ((RecommendActivity) getActivity()).getTvMyBudget();
+        final ProgressBar pbBudget = ((RecommendActivity) getActivity()).getPbBudget();
 
         ApiServices.service_post.get_r_kamar(
                 "kamar",
@@ -75,7 +79,7 @@ public class ReHotelFragment extends Fragment {
             public void onResponse(Call<ArrayList<Kamar>> call, Response<ArrayList<Kamar>> response) {
                 hotels = response.body();
 
-                rcHotel.setAdapter(new ReHotelAdapter(getContext(), hotels, myChoice));
+                rcHotel.setAdapter(new ReHotelAdapter(getContext(), hotels, myChoice, tvMyBudget, pbBudget));
                 rcHotel.getAdapter().notifyDataSetChanged();
             }
 

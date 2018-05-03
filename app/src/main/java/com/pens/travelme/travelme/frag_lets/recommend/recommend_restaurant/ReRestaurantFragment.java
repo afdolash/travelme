@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pens.travelme.travelme.R;
@@ -66,6 +68,8 @@ public class ReRestaurantFragment extends Fragment {
 
     public void loadMenuData() {
         final MyChoice myChoice = ((RecommendActivity) getActivity()).getMyChoice();
+        final TextView tvMyBudget = ((RecommendActivity) getActivity()).getTvMyBudget();
+        final ProgressBar pbBudget = ((RecommendActivity) getActivity()).getPbBudget();
 
         ApiServices.service_post.get_r_menu(
                 "menu",
@@ -76,7 +80,7 @@ public class ReRestaurantFragment extends Fragment {
             public void onResponse(Call<ArrayList<Menu>> call, Response<ArrayList<Menu>> response) {
                 menus = response.body();
 
-                rcRestaurant.setAdapter(new ReRestaurantAdapter(getContext(), menus, myChoice));
+                rcRestaurant.setAdapter(new ReRestaurantAdapter(getContext(), menus, myChoice, tvMyBudget, pbBudget));
                 rcRestaurant.getAdapter().notifyDataSetChanged();
             }
 

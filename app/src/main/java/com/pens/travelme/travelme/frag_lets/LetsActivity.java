@@ -233,7 +233,6 @@ public class LetsActivity extends AppCompatActivity {
                     tvCatAlam.setTextColor(Color.parseColor("#656565"));
                     imgCatAlam.setImageTintList(ColorStateList.valueOf(Color.parseColor("#656565")));
                 }
-                Toast.makeText(LetsActivity.this, categoryWisata.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -251,7 +250,6 @@ public class LetsActivity extends AppCompatActivity {
                     tvCatBuatan.setTextColor(Color.parseColor("#656565"));
                     imgCatBuatan.setImageTintList(ColorStateList.valueOf(Color.parseColor("#656565")));
                 }
-                Toast.makeText(LetsActivity.this, categoryWisata.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 

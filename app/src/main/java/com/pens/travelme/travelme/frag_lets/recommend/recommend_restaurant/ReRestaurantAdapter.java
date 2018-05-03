@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,11 +47,15 @@ public class ReRestaurantAdapter extends RecyclerView.Adapter<ReRestaurantAdapte
     private Context context;
     private List<Menu> menus;
     private MyChoice myChoice;
+    private TextView tvMyBudget;
+    private ProgressBar pbBudget;
 
-    public ReRestaurantAdapter(Context context, List<Menu> menus, MyChoice myChoice) {
+    public ReRestaurantAdapter(Context context, List<Menu> menus, MyChoice myChoice, TextView tvMyBudget, ProgressBar pbBudget) {
         this.context = context;
         this.menus = menus;
         this.myChoice = myChoice;
+        this.tvMyBudget = tvMyBudget;
+        this.pbBudget = pbBudget;
     }
 
     @Override
@@ -114,6 +119,10 @@ public class ReRestaurantAdapter extends RecyclerView.Adapter<ReRestaurantAdapte
                 }
                 editor.putString("sisabudget", String.valueOf(myChoice.getBudget()));
                 editor.commit();
+
+                pbBudget.setProgress(myChoice.getBudget().intValue());
+                tvMyBudget.setText("Rp "+ myChoice.getBudget());
+
                 Log.d("selectedMenu",sharedPreferences.getString("id_menu",""));
                 Log.d("budget", String.valueOf(myChoice.getBudget()));
 

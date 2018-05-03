@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pens.travelme.travelme.R;
@@ -74,7 +76,8 @@ public class ReTravelFragment extends Fragment {
 
     public void loadWisataData() {
         final MyChoice myChoice = ((RecommendActivity) getActivity()).getMyChoice();
-        Toast.makeText(getContext(), myChoice.getBudget().toString(), Toast.LENGTH_SHORT).show();
+        final TextView tvMyBudget = ((RecommendActivity) getActivity()).getTvMyBudget();
+        final ProgressBar pbBudget = ((RecommendActivity) getActivity()).getPbBudget();
 
         ApiServices.service_post.get_r_wisata(
                 "wisata",
@@ -91,7 +94,7 @@ public class ReTravelFragment extends Fragment {
                 travels = response.body();
                 Log.d("Travel", String.valueOf(response.body().toString()));
 
-                rcTravel.setAdapter(new com.pens.travelme.travelme.frag_lets.recommend.recommend_travel.ReTravelAdapter(getContext(), travels, myChoice));
+                rcTravel.setAdapter(new com.pens.travelme.travelme.frag_lets.recommend.recommend_travel.ReTravelAdapter(getContext(), travels, myChoice, tvMyBudget, pbBudget));
                 rcTravel.getAdapter().notifyDataSetChanged();
             }
 

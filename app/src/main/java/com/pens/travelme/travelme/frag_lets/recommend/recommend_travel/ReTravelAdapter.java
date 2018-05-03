@@ -17,12 +17,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.pens.travelme.travelme.R;
 import com.pens.travelme.travelme.actv_detail.DetailWisataActivity;
+import com.pens.travelme.travelme.frag_lets.recommend.RecommendActivity;
 import com.pens.travelme.travelme.modal.MyChoice;
 import com.pens.travelme.travelme.modal.Wisata;
 
@@ -41,11 +43,15 @@ public class ReTravelAdapter extends RecyclerView.Adapter<com.pens.travelme.trav
     private Context context;
     private List<Wisata> travels;
     private MyChoice myChoice;
+    private TextView tvMyBudget;
+    private ProgressBar pbBudget;
 
-    public ReTravelAdapter(Context context, List<Wisata> travels, MyChoice myChoice) {
+    public ReTravelAdapter(Context context, List<Wisata> travels, MyChoice myChoice, TextView tvMyBudget, ProgressBar pbBudget) {
         this.context = context;
         this.travels = travels;
         this.myChoice = myChoice;
+        this.tvMyBudget = tvMyBudget;
+        this.pbBudget = pbBudget;
 
         SharedPreferences sharedPreferences = ((Activity)context).getSharedPreferences("myTravel",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -143,6 +149,9 @@ public class ReTravelAdapter extends RecyclerView.Adapter<com.pens.travelme.trav
                         editor.commit();
                     }
                 }
+
+                pbBudget.setProgress(myChoice.getBudget().intValue());
+                tvMyBudget.setText("Rp "+ myChoice.getBudget());
 
                 Log.d("selectedTravel",sharedPreferences.getString("id_wisata",""));
                 Log.d("budget", String.valueOf(myChoice.getBudget()));

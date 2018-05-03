@@ -6,7 +6,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pens.travelme.travelme.MainActivity;
@@ -26,12 +28,12 @@ public class RecommendActivity extends AppCompatActivity {
     public static final String RESTAURANT = "RESTAURANT";
     public static String currentFragment = TRAVEL;
 
-    public MyChoice getMyChoice() {
-        return myChoice;
-    }
+    public MyChoice myChoice = new MyChoice();
 
-    public static MyChoice myChoice = new MyChoice();
     private RelativeLayout rvNext;
+    private ProgressBar pbBudget;
+    private TextView tvMyBudget;
+    private TextView tvTotalBudget;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,17 @@ public class RecommendActivity extends AppCompatActivity {
 
         myChoice = getIntent().getParcelableExtra(MYCHOICE);
 
+        pbBudget = (ProgressBar) findViewById(R.id.pb_budget);
+        tvMyBudget = (TextView) findViewById(R.id.tv_my_budget);
+        tvTotalBudget = (TextView) findViewById(R.id.tv_total_budget);
         rvNext = (RelativeLayout) findViewById(R.id.rv_next);
+
+        pbBudget.setIndeterminate(false);
+        pbBudget.setMax(myChoice.getBudget().intValue());
+        pbBudget.setProgress(myChoice.getBudget().intValue());
+        tvMyBudget.setText("Rp "+ myChoice.getBudget());
+        tvTotalBudget.setText("Rp "+ myChoice.getBudget());
+
         rvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,5 +80,17 @@ public class RecommendActivity extends AppCompatActivity {
         transaction.replace(R.id.frame_container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    public MyChoice getMyChoice() {
+        return myChoice;
+    }
+
+    public ProgressBar getPbBudget() {
+        return pbBudget;
+    }
+
+    public TextView getTvMyBudget() {
+        return tvMyBudget;
     }
 }
